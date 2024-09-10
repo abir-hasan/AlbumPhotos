@@ -17,7 +17,14 @@ android {
         jvmToolchain(libs.versions.jvm.get().toInt())
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
+        all {
+            buildConfigField("String", "AlbumBaseUrl", "\"https://jsonplaceholder.typicode.com\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -37,6 +44,12 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.annotations)
     ksp(libs.koin.ksp.compiler)
+
+    // Retrofit
+    api(libs.bundles.retrofit)
+    api(libs.logging.interceptor)
+
+    implementation(libs.coroutines.core)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
