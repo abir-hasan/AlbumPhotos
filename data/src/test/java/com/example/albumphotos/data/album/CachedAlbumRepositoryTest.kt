@@ -22,7 +22,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class, CoroutinesExtension::class)
-class CachedAlbumRepositoryTest {
+internal class CachedAlbumRepositoryTest {
 
     @MockK
     private lateinit var albumService: AlbumService

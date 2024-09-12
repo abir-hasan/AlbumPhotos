@@ -73,6 +73,8 @@ internal class CachedValueTest {
 
         // When
         val result = CachedValue("")
+
+        // Advancing time
         every { Clock.System.now().toEpochMilliseconds() } returns (randomTimeMs + maxDurationMs)
 
         // Then
