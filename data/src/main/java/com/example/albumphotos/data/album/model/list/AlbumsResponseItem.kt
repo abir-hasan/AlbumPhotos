@@ -1,4 +1,4 @@
-package com.example.albumphotos.data.album.model
+package com.example.albumphotos.data.album.model.list
 
 import com.google.gson.annotations.SerializedName
 

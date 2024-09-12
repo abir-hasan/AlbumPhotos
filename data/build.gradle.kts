@@ -50,6 +50,7 @@ dependencies {
     api(libs.logging.interceptor)
 
     implementation(libs.coroutines.core)
+    implementation(libs.kotlin.datetime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

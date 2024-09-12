@@ -8,7 +8,7 @@ class FetchAlbums(
     private val albumRepository: AlbumRepository,
 ) {
 
-    suspend operator fun invoke(): List<Album> {
-        return albumRepository.getAlbums()
+    suspend operator fun invoke(isManualRefresh: Boolean = false): List<Album> {
+        return albumRepository.getAlbums(isManualRefresh)
     }
 }
