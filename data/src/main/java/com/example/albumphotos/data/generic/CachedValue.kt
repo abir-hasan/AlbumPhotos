@@ -7,10 +7,6 @@ data class CachedValue<T>(
     private val storageTimeStampMs: Long = Clock.System.now().toEpochMilliseconds(),
 ) {
 
-    fun copyWithValueMutation(mutation: T.() -> T): CachedValue<T> {
-        return copy(value = value.mutation())
-    }
-
     fun isExpired(isManualRefresh: Boolean = false): Boolean {
         return Clock.System.now().toEpochMilliseconds() - storageTimeStampMs > getCacheDuration(isManualRefresh)
     }

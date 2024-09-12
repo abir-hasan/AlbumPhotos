@@ -52,7 +52,21 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.kotlin.datetime)
 
+
+    // Test
+    testImplementation(kotlin("test"))
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.jupiter)
+    testRuntimeOnly(libs.jupiter.engine)
+    testImplementation(libs.mockk.android)
+    testImplementation(libs.mockk.agent)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+// Testing with JUnit5
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
