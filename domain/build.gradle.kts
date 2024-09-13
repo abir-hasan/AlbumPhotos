@@ -19,6 +19,15 @@ dependencies{
     ksp(libs.koin.ksp.compiler)
 
     implementation(libs.coroutines.core)
+
+    // Test
+    testImplementation(kotlin("test"))
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.jupiter)
+    testRuntimeOnly(libs.jupiter.engine)
+    testImplementation(libs.mockk.core)
+    testImplementation(libs.mockk.agent)
+    testImplementation(libs.jeasy)
 }
 
 tasks.withType<Test> {
