@@ -9,3 +9,8 @@ object Albums
 data class Photos(
     val albumId: String,
 )
+
+@Serializable
+data class PhotoDetails(
+    val url: String,
+)

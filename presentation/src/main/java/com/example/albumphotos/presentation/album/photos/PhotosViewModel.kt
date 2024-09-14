@@ -3,9 +3,12 @@ package com.example.albumphotos.presentation.album.photos
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.albumphotos.domain.album.FetchPhotos
+import com.example.albumphotos.presentation.album.photos.PhotosNavigationAction.ShowPhoto
+import com.example.albumphotos.presentation.album.photos.model.PhotoUIModel
 import com.example.albumphotos.presentation.album.photos.model.PhotosArg
 import com.example.albumphotos.presentation.album.photos.model.PhotosUIModel
 import com.example.albumphotos.presentation.generic.UIState
+import com.example.albumphotos.presentation.generic.event.MutableEventFlow
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,6 +30,9 @@ class PhotosViewModel(
         _photosUIState.asStateFlow()
     }
 
+    private val _navigation = MutableEventFlow<PhotosNavigationAction>()
+    val navigation = _navigation.asEventFlow()
+
     private fun getPhotos() {
         viewModelScope.launch(Dispatchers.IO + photosExceptionHandler) {
             _photosUIState.value = UIState.Loading
@@ -36,6 +42,10 @@ class PhotosViewModel(
     }
 
     fun onRetryClicked() = getPhotos()
+
+    fun onPhotoClicked(photoUIModel: PhotoUIModel) {
+        _navigation.setEvent(ShowPhoto(photoUIModel.url))
+    }
 
     private val photosExceptionHandler = CoroutineExceptionHandler { _, exception ->
         _photosUIState.value = UIState.Error

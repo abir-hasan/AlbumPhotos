@@ -2,6 +2,7 @@ package com.example.albumphotos.ui.album.photos
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,14 +25,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.albumphotos.R
+import com.example.albumphotos.navigation.PhotoDetails
+import com.example.albumphotos.presentation.album.photos.PhotosNavigationAction
 import com.example.albumphotos.presentation.album.photos.PhotosViewModel
 import com.example.albumphotos.presentation.album.photos.model.PhotoUIModel
 import com.example.albumphotos.presentation.album.photos.model.PhotosArg
 import com.example.albumphotos.presentation.album.photos.model.PhotosUIModel
 import com.example.albumphotos.presentation.generic.UIState
+import com.example.albumphotos.presentation.generic.event.EventFlow
 import com.example.albumphotos.ui.generic.composables.FullScreenError
+import com.example.albumphotos.ui.generic.extension.RetrieveAsEffect
 import com.example.albumphotos.ui.theme.Shapes
 import com.example.albumphotos.ui.theme.Spacing
 import org.koin.androidx.compose.koinViewModel
@@ -40,16 +46,19 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun PhotosScreen(
     albumId: String,
+    navHostController: NavHostController,
     modifier: Modifier = Modifier,
     viewModel: PhotosViewModel = koinViewModel(
         parameters = { parametersOf(PhotosArg(albumId)) },
     )
 ) {
     val albumsUIState by viewModel.photosUIState.collectAsState()
+    viewModel.navigation.HandleNavigationEvents(navHostController)
     Photos(
         photosState = albumsUIState,
         modifier = modifier,
         onClickRetry = viewModel::onRetryClicked,
+        onClickPhoto = viewModel::onPhotoClicked,
     )
 }
 
@@ -57,6 +66,7 @@ fun PhotosScreen(
 private fun Photos(
     photosState: UIState<PhotosUIModel>,
     onClickRetry: () -> Unit,
+    onClickPhoto: (PhotoUIModel) -> Unit,
     modifier: Modifier = Modifier,
 ) = Scaffold(
     modifier = modifier.fillMaxSize(),
@@ -69,6 +79,7 @@ private fun Photos(
         when (state) {
             is UIState.Normal -> NormalContent(
                 photosUIModel = state.data,
+                onClickPhoto = onClickPhoto,
             )
             UIState.Loading -> {
                 LoadingContent(modifier = Modifier.fillMaxSize())
@@ -91,6 +102,7 @@ private fun LoadingContent(modifier: Modifier = Modifier) = Box(
 @Composable
 private fun NormalContent(
     photosUIModel: PhotosUIModel,
+    onClickPhoto: (PhotoUIModel) -> Unit,
     modifier: Modifier = Modifier,
 ) = LazyVerticalGrid(
     columns = GridCells.Fixed(2),
@@ -101,7 +113,7 @@ private fun NormalContent(
     items(photosUIModel.photos) {
         PhotoItem(
             photoUIModel = it,
-            modifier = Modifier
+            onClickPhoto = onClickPhoto,
         )
     }
 }
@@ -109,10 +121,12 @@ private fun NormalContent(
 @Composable
 private fun PhotoItem(
     photoUIModel: PhotoUIModel,
+    onClickPhoto: (PhotoUIModel) -> Unit,
     modifier: Modifier = Modifier
 ) = Column(
     modifier = modifier
         .padding(Spacing.x1)
+        .clickable { onClickPhoto(photoUIModel) }
         .clip(Shapes.medium)
         .background(
             color = MaterialTheme.colorScheme.surface,
@@ -134,6 +148,19 @@ private fun PhotoItem(
         modifier = Modifier.padding(Spacing.x1),
         maxLines = 1,
     )
+}
+
+@Composable
+fun EventFlow<PhotosNavigationAction>.HandleNavigationEvents(
+    navHostController: NavHostController,
+) {
+    RetrieveAsEffect {
+        when (it) {
+            is PhotosNavigationAction.ShowPhoto -> {
+                navHostController.navigate(PhotoDetails(it.url))
+            }
+        }
+    }
 }
 
 

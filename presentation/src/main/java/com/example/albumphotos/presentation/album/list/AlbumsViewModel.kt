@@ -42,7 +42,7 @@ class AlbumsViewModel(
     }
 
     fun onRetryClicked() {
-        _albumsUIState.value = UIState.Loading
+        _albumsUIState.value = UIState.Loading// todo
         getAlbums()
     }
 

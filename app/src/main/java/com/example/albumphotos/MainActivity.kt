@@ -12,7 +12,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.albumphotos.navigation.Albums
+import com.example.albumphotos.navigation.PhotoDetails
 import com.example.albumphotos.navigation.Photos
+import com.example.albumphotos.ui.album.details.PhotoDetailsScreen
 import com.example.albumphotos.ui.album.list.AlbumsScreen
 import com.example.albumphotos.ui.album.photos.PhotosScreen
 import com.example.albumphotos.ui.theme.AlbumPhotosTheme
@@ -42,11 +44,18 @@ private fun AlbumPhotosNavHost(
         modifier = modifier,
     ) {
         composable<Albums> {
-            AlbumsScreen(navHostController)
+            AlbumsScreen(navHostController = navHostController)
         }
         composable<Photos> {
             val albumId = it.toRoute<Photos>().albumId
-            PhotosScreen(albumId)
+            PhotosScreen(
+                albumId = albumId,
+                navHostController = navHostController,
+            )
+        }
+        composable<PhotoDetails> {
+            val photoUrl = it.toRoute<PhotoDetails>().url
+            PhotoDetailsScreen(url = photoUrl)
         }
     }
 }

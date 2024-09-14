@@ -24,7 +24,7 @@ import com.example.albumphotos.ui.theme.Spacing
 
 @Composable
 fun FullScreenError(
-    onClickRetry: () -> Unit,
+    onClickRetry: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) = Surface(
     modifier = modifier.fillMaxSize()
@@ -46,15 +46,17 @@ fun FullScreenError(
             textAlign = TextAlign.Start,
             modifier = Modifier.padding(top = Spacing.x2),
         )
-        Button(
-            onClick = onClickRetry,
-            modifier = Modifier.padding(top = Spacing.x2),
-        ) {
-            Text(
-                text = stringResource(R.string.error_button),
-                style = MaterialTheme.typography.labelLarge,
-                textAlign = TextAlign.Start,
-            )
+        onClickRetry?.let { onRetry ->
+            Button(
+                onClick = onRetry,
+                modifier = Modifier.padding(top = Spacing.x2),
+            ) {
+                Text(
+                    text = stringResource(R.string.error_button),
+                    style = MaterialTheme.typography.labelLarge,
+                    textAlign = TextAlign.Start,
+                )
+            }
         }
     }
 }
