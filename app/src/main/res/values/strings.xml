@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Album Photos</string>
+    <string name="label_albums_sate">Albums Sate</string>
+    <string name="label_photos_sate">Photos Sate</string>
+    <string name="error_title">Something went wrong!</string>
+    <string name="error_button">Try again</string>
 </resources>

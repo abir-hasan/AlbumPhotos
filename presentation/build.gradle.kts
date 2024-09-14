@@ -40,6 +40,8 @@ dependencies {
     ksp(libs.koin.ksp.compiler)
 
     implementation (libs.coroutines.core)
+    implementation(libs.kotlinx.collections.immutable)
+    implementation(libs.atomicfu)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

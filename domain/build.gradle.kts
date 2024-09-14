@@ -11,7 +11,7 @@ kotlin.sourceSets["main"].kotlin {
     srcDir("build/generated/ksp/main/kotlin")
 }
 
-dependencies{
+dependencies {
     // Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

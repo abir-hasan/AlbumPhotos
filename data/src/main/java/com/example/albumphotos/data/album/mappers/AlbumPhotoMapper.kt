@@ -14,6 +14,7 @@ class AlbumPhotoMapper {
                 coverId = it.id.toString(),
                 thumbnailUrl = it.thumbnailUrl,
                 url = it.url,
+                title = it.title,
             )
         }
     }

@@ -51,12 +51,14 @@ class AlbumPhotoMapperTest {
                     albumId = "1",
                     url = "http://www.test.com/full/111",
                     thumbnailUrl = "http://www.test.com/thumb/111",
+                    title = "Test 1"
                 ),
                 AlbumPhoto(
                     coverId = "3000",
                     albumId = "2",
                     url = "http://www.test.com/full/222",
                     thumbnailUrl = "http://www.test.com/thumb/222",
+                    title = "Test 2",
                 ),
             )
         )

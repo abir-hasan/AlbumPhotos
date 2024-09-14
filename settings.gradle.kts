@@ -19,7 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Album Photos"
 include(":app")
 include(":data")
 include(":domain")

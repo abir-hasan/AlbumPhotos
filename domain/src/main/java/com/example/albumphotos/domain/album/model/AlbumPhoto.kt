@@ -5,4 +5,5 @@ data class AlbumPhoto(
     val albumId: String,
     val thumbnailUrl: String,
     val url: String,
+    val title: String,
 )
