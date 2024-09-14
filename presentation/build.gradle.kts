@@ -43,6 +43,15 @@ dependencies {
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.atomicfu)
 
+    // Test
+    testImplementation(kotlin("test"))
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.jupiter)
+    testRuntimeOnly(libs.jupiter.engine)
+    testImplementation(libs.mockk.android)
+    testImplementation(libs.mockk.agent)
+    testImplementation(libs.turbine)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

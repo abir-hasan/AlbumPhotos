@@ -13,6 +13,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,23 +32,35 @@ import com.example.albumphotos.presentation.album.list.model.AlbumsUIModel
 import com.example.albumphotos.ui.theme.Shapes
 import com.example.albumphotos.ui.theme.Spacing
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun NormalContent(
     albumsUIModel: AlbumsUIModel,
+    refreshing: Boolean,
+    onRefresh: () -> Unit,
     onClickAlbum: (AlbumUIModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
-        modifier = modifier.padding(Spacing.x1),
-        verticalArrangement = Arrangement.spacedBy(Spacing.x1),
-    ) {
-        items(albumsUIModel.albums) {
-            AlbumItem(
-                albumUIModel = it,
-                modifier = Modifier,
-                onClickAlbum = onClickAlbum,
-            )
+    val pullRefreshState = rememberPullRefreshState(refreshing, onRefresh)
+    Box(modifier = modifier.pullRefresh(pullRefreshState)) {
+        LazyColumn(
+            modifier = Modifier.padding(Spacing.x1),
+            verticalArrangement = Arrangement.spacedBy(Spacing.x1),
+        ) {
+            items(albumsUIModel.albums) {
+                AlbumItem(
+                    albumUIModel = it,
+                    modifier = Modifier,
+                    onClickAlbum = onClickAlbum,
+                )
+            }
         }
+        PullRefreshIndicator(
+            refreshing = refreshing,
+            state = pullRefreshState,
+            modifier = Modifier.align(Alignment.TopCenter),
+            contentColor = MaterialTheme.colorScheme.tertiary,
+        )
     }
 }
 

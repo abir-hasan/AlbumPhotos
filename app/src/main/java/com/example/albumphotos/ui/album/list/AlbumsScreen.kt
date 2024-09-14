@@ -33,18 +33,23 @@ internal fun AlbumsScreen(
     viewModel: AlbumsViewModel = koinViewModel(),
 ) {
     val albumsUIState by viewModel.albumsUIState.collectAsState()
+    val refreshing by viewModel.swipeRefresh.collectAsState()
     viewModel.navigation.HandleNavigationEvents(navHostController)
     Albums(
         albumsUIState = albumsUIState,
         modifier = modifier,
         onClickAlbum = viewModel::onAlbumClicked,
         onClickRetry = viewModel::onRetryClicked,
+        onRefresh = viewModel::onRefreshClicked,
+        refreshing = refreshing,
     )
 }
 
 @Composable
 private fun Albums(
     albumsUIState: UIState<AlbumsUIModel>,
+    refreshing: Boolean,
+    onRefresh: () -> Unit,
     onClickAlbum: (AlbumUIModel) -> Unit,
     onClickRetry: () -> Unit,
     modifier: Modifier = Modifier,
@@ -59,7 +64,9 @@ private fun Albums(
         when (state) {
             is UIState.Normal -> NormalContent(
                 albumsUIModel = state.data,
-                onClickAlbum = onClickAlbum
+                onClickAlbum = onClickAlbum,
+                onRefresh = onRefresh,
+                refreshing = refreshing,
             )
             UIState.Loading -> LoadingContent()
             UIState.Error -> FullScreenError(
@@ -91,5 +98,7 @@ private fun NormalContentPreview(
         albumsUIState = uiState,
         onClickAlbum = {},
         onClickRetry = {},
+        onRefresh = {},
+        refreshing = false,
     )
 }

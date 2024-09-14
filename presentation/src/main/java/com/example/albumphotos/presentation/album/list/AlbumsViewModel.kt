@@ -23,17 +23,22 @@ class AlbumsViewModel(
 
     private val _albumsUIState = MutableStateFlow<UIState<AlbumsUIModel>>(UIState.Loading)
     val albumsUIState by lazy {
-        getAlbums()
+        getAlbums(forceRefresh = false)
         _albumsUIState.asStateFlow()
     }
 
     private val _navigation = MutableEventFlow<AlbumsNavigationAction>()
     val navigation = _navigation.asEventFlow()
 
-    private fun getAlbums() {
+    private val _swipeRefresh = MutableStateFlow(false)
+    val swipeRefresh = _swipeRefresh.asStateFlow()
+
+    private fun getAlbums(forceRefresh: Boolean) {
         viewModelScope.launch(Dispatchers.IO + albumsExceptionHandler) {
-            val albums = fetchAlbums()
+            _albumsUIState.value = UIState.Loading
+            val albums = fetchAlbums(forceRefresh)
             _albumsUIState.value = UIState.Normal(mapper.toUIModel(albums))
+            _swipeRefresh.value = false
         }
     }
 
@@ -42,8 +47,13 @@ class AlbumsViewModel(
     }
 
     fun onRetryClicked() {
-        _albumsUIState.value = UIState.Loading// todo
-        getAlbums()
+        _swipeRefresh.value = false
+        getAlbums(forceRefresh = false)
+    }
+
+    fun onRefreshClicked() {
+        _swipeRefresh.value = true
+        getAlbums(forceRefresh = true)
     }
 
     private val albumsExceptionHandler = CoroutineExceptionHandler { _, exception ->
