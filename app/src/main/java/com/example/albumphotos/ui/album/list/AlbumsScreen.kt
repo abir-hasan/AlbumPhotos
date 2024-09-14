@@ -27,10 +27,10 @@ import com.example.albumphotos.ui.theme.AlbumPhotosTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AlbumsScreen(
+internal fun AlbumsScreen(
     navHostController: NavHostController,
     modifier: Modifier = Modifier,
-    viewModel: AlbumsViewModel = koinViewModel()
+    viewModel: AlbumsViewModel = koinViewModel(),
 ) {
     val albumsUIState by viewModel.albumsUIState.collectAsState()
     viewModel.navigation.HandleNavigationEvents(navHostController)

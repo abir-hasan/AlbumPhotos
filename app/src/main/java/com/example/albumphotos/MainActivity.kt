@@ -37,25 +37,23 @@ class MainActivity : ComponentActivity() {
 private fun AlbumPhotosNavHost(
     navHostController: NavHostController,
     modifier: Modifier = Modifier
+) = NavHost(
+    navController = navHostController,
+    startDestination = Albums,
+    modifier = modifier,
 ) {
-    NavHost(
-        navController = navHostController,
-        startDestination = Albums,
-        modifier = modifier,
-    ) {
-        composable<Albums> {
-            AlbumsScreen(navHostController = navHostController)
-        }
-        composable<Photos> {
-            val albumId = it.toRoute<Photos>().albumId
-            PhotosScreen(
-                albumId = albumId,
-                navHostController = navHostController,
-            )
-        }
-        composable<PhotoDetails> {
-            val photoUrl = it.toRoute<PhotoDetails>().url
-            PhotoDetailsScreen(url = photoUrl)
-        }
+    composable<Albums> {
+        AlbumsScreen(navHostController = navHostController)
+    }
+    composable<Photos> {
+        val albumId = it.toRoute<Photos>().albumId
+        PhotosScreen(
+            albumId = albumId,
+            navHostController = navHostController,
+        )
+    }
+    composable<PhotoDetails> {
+        val photoUrl = it.toRoute<PhotoDetails>().url
+        PhotoDetailsScreen(url = photoUrl)
     }
 }

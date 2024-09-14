@@ -15,7 +15,7 @@ import coil.compose.SubcomposeAsyncImage
 import com.example.albumphotos.ui.generic.composables.FullScreenError
 
 @Composable
-fun PhotoDetailsScreen(
+internal fun PhotoDetailsScreen(
     url: String,
     modifier: Modifier = Modifier,
 ) {

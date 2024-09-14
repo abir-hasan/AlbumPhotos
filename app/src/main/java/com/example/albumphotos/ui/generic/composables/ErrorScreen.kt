@@ -23,7 +23,7 @@ import com.example.albumphotos.ui.theme.AlbumPhotosTheme
 import com.example.albumphotos.ui.theme.Spacing
 
 @Composable
-fun FullScreenError(
+internal fun FullScreenError(
     onClickRetry: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) = Surface(
