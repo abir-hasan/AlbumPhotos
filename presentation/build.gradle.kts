@@ -50,9 +50,14 @@ dependencies {
     testRuntimeOnly(libs.jupiter.engine)
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.agent)
+    testImplementation(libs.jeasy)
     testImplementation(libs.turbine)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
