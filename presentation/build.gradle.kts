@@ -37,6 +37,7 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.annotations)
+    implementation(libs.androidx.ui.android)
     ksp(libs.koin.ksp.compiler)
 
     implementation (libs.coroutines.core)

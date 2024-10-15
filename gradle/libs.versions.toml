@@ -28,6 +28,7 @@ material = "1.12.0"
 mockk = "1.13.12"
 retrofit = "2.9.0"
 turbine = "1.1.0"
+ui-android = "1.7.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -73,6 +74,7 @@ mockk-agent = { module = "io.mockk:mockk-agent", version.ref = "mockk" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+androidx-ui-android = { group = "androidx.compose.ui", name = "ui-android", version.ref = "ui-android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
