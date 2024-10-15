@@ -51,7 +51,7 @@ dependencies {
 
     implementation(libs.coroutines.core)
     implementation(libs.kotlin.datetime)
-
+    implementation(libs.atomicfu)
 
     // Test
     testImplementation(kotlin("test"))
