@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
 }
 
@@ -10,7 +9,6 @@ android {
 
     defaultConfig {
         minSdk = ProjectConfiguration.MinSdk
-        targetSdk = ProjectConfiguration.TargetSdk
     }
 
     buildTypes {
@@ -54,6 +52,7 @@ dependencies {
     testImplementation(libs.turbine)
 
     testImplementation(libs.junit)
+    testRuntimeOnly(libs.junit.platform.launcher)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

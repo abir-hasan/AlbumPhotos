@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.example.albumphotos.presentation.album.photos.model.PhotoUIModel
 import com.example.albumphotos.presentation.album.photos.model.PhotosUIModel
 import com.example.albumphotos.ui.theme.Shapes

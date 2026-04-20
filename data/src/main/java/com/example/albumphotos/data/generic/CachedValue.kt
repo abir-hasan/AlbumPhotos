@@ -1,6 +1,6 @@
 package com.example.albumphotos.data.generic
 
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
 
 data class CachedValue<T>(
     private val value: T,

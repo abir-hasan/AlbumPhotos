@@ -28,6 +28,7 @@ dependencies {
     testImplementation(libs.mockk.core)
     testImplementation(libs.mockk.agent)
     testImplementation(libs.jeasy)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.withType<Test> {

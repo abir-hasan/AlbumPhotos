@@ -16,7 +16,7 @@ open class CoroutinesExtension : TestExtension(), BeforeTestExecutionCallback, A
 
     private val testDispatcher = UnconfinedTestDispatcher()
 
-    override fun beforeTestExecution(context: ExtensionContext?) {
+    override fun beforeTestExecution(context: ExtensionContext) {
         Dispatchers.setMain(testDispatcher)
         mockkStatic(Dispatchers::class)
         every { Dispatchers.Main } answers { callOriginal() }
@@ -29,7 +29,7 @@ open class CoroutinesExtension : TestExtension(), BeforeTestExecutionCallback, A
         } answers { testDispatcher.plus(firstArg<CoroutineContext>()) }
     }
 
-    override fun afterTestExecution(context: ExtensionContext?) {
+    override fun afterTestExecution(context: ExtensionContext) {
         unmockkStatic(Dispatchers::class)
         Dispatchers.resetMain()
     }

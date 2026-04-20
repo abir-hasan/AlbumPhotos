@@ -7,16 +7,16 @@ import org.junit.jupiter.api.extension.TestInstancePostProcessor
 
 abstract class TestExtension : TestInstancePostProcessor, ParameterResolver {
 
-    override fun postProcessTestInstance(testInstance: Any?, context: ExtensionContext?) {
+    override fun postProcessTestInstance(testInstance: Any, context: ExtensionContext) {
         // no-op
     }
 
-    override fun supportsParameter(parameterContext: ParameterContext?, extensionContext: ExtensionContext?): Boolean {
+    override fun supportsParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): Boolean {
         // no-op
         return false
     }
 
-    override fun resolveParameter(parameterContext: ParameterContext?, extensionContext: ExtensionContext?): Any? {
+    override fun resolveParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): Any? {
         // no-op
         return null
     }
