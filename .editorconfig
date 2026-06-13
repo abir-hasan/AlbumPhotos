@@ -234,3 +234,11 @@ end_of_line = crlf
 
 [*.properties]
 ij_properties_keep_blank_lines = true
+
+# Test sources: descriptive backtick names and setup blocks run long by design.
+# Line length is not enforced in test / androidTest source sets (matches detekt config).
+[**/src/test/**/*.{kt,kts}]
+ktlint_standard_max-line-length = disabled
+
+[**/src/androidTest/**/*.{kt,kts}]
+ktlint_standard_max-line-length = disabled
