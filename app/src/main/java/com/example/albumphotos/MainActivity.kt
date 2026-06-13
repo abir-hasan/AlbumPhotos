@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun AlbumPhotosNavHost(
     navHostController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = NavHost(
     navController = navHostController,
     startDestination = Albums,

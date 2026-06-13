@@ -3,23 +3,24 @@ package com.example.albumphotos.data.generic
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
-import kotlinx.datetime.Clock
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import kotlin.test.AfterTest
-import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 internal class CachedValueTest {
 
-    @BeforeTest
+    @BeforeEach
     fun setup() {
         mockkObject(Clock.System)
     }
 
-    @AfterTest
+    @AfterEach
     fun tearDown() {
         unmockkAll()
     }
@@ -31,13 +32,13 @@ internal class CachedValueTest {
         val maxDurationMs = 900_000L
 
         // Setting time
-        every { Clock.System.now().toEpochMilliseconds() } returns randomTimeMs
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs)
 
         // When
         val result = CachedValue("")
 
         // Advancing time
-        every { Clock.System.now().toEpochMilliseconds() } returns (randomTimeMs + maxDurationMs)
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs + maxDurationMs)
 
         // Then
         assertFalse(result.isExpired(false))
@@ -50,13 +51,13 @@ internal class CachedValueTest {
         val maxDurationMs = 900_000L
 
         // Setting time
-        every { Clock.System.now().toEpochMilliseconds() } returns randomTimeMs
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs)
 
         // When
         val result = CachedValue("")
 
         // Advancing time
-        every { Clock.System.now().toEpochMilliseconds() } returns (randomTimeMs + maxDurationMs + 1)
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs + maxDurationMs + 1)
 
         // Then
         assertTrue(result.isExpired(false))
@@ -69,18 +70,18 @@ internal class CachedValueTest {
         val maxDurationMs = 900_000L
 
         // Setting time
-        every { Clock.System.now().toEpochMilliseconds() } returns randomTimeMs
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs)
 
         // When
         val result = CachedValue("")
 
         // Advancing time
-        every { Clock.System.now().toEpochMilliseconds() } returns (randomTimeMs + maxDurationMs)
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs + maxDurationMs)
 
         // Then
         assertEquals(
             expected = result.takeValue(false),
-            actual = ""
+            actual = "",
         )
     }
 
@@ -91,13 +92,13 @@ internal class CachedValueTest {
         val maxDurationMs = 900_000L
 
         // Setting time
-        every { Clock.System.now().toEpochMilliseconds() } returns randomTimeMs
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs)
 
         // When
         val result = CachedValue("")
 
         // Advancing time
-        every { Clock.System.now().toEpochMilliseconds() } returns (randomTimeMs + maxDurationMs + 1)
+        every { Clock.System.now() } returns Instant.fromEpochMilliseconds(randomTimeMs + maxDurationMs + 1)
 
         // Then
         assertNull(result.takeValue(false))

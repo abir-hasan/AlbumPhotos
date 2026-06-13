@@ -40,13 +40,9 @@ data class Event<out T : Any>(
     val isRetrieved: Boolean
         get() = _isRetrieved.value
 
-    fun peek(): T {
-        return data
-    }
+    fun peek(): T = data
 
-    fun retrieve(): T? {
-        return if (!_isRetrieved.getAndSet(true)) data else null
-    }
+    fun retrieve(): T? = if (!_isRetrieved.getAndSet(true)) data else null
 
     override fun hashCode(): Int {
         var result = data.hashCode()

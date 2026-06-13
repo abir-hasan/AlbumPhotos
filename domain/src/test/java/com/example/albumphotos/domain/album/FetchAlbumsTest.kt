@@ -1,7 +1,7 @@
 package com.example.albumphotos.domain.album
 
+import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.domain.album.model.Album
-import com.example.albumphotos.domain.extension.CoroutinesExtension
 import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -23,29 +23,31 @@ class FetchAlbumsTest {
     private lateinit var fetchAlbums: FetchAlbums
 
     @Test
-    fun `When fetch albums is invoked, then return data from repository`() = runTest {
-        // Given
-        val forceRefresh = false
-        val albums = mockk<List<Album>>()
-        coEvery { albumRepository.getAlbums(forceRefresh) } returns albums
+    fun `When fetch albums is invoked, then return data from repository`() =
+        runTest {
+            // Given
+            val forceRefresh = false
+            val albums = mockk<List<Album>>()
+            coEvery { albumRepository.getAlbums(forceRefresh) } returns albums
 
-        // When
-        val result = fetchAlbums(forceRefresh)
+            // When
+            val result = fetchAlbums(forceRefresh)
 
-        // Then
-        assertEquals(result, albums)
-    }
+            // Then
+            assertEquals(result, albums)
+        }
 
     @Test
-    fun `When fetch albums fails, then propagate error`() = runTest {
-        // Given
-        val forceRefresh = false
-        val exception = RuntimeException("Something went wrong!")
-        coEvery { albumRepository.getAlbums(forceRefresh) } throws exception
+    fun `When fetch albums fails, then propagate error`() =
+        runTest {
+            // Given
+            val forceRefresh = false
+            val exception = RuntimeException("Something went wrong!")
+            coEvery { albumRepository.getAlbums(forceRefresh) } throws exception
 
-        // When + Then
-        assertFailsWith<RuntimeException> {
-            fetchAlbums(forceRefresh)
+            // When + Then
+            assertFailsWith<RuntimeException> {
+                fetchAlbums(forceRefresh)
+            }
         }
-    }
 }

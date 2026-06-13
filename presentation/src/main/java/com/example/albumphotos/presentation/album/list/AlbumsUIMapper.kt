@@ -10,27 +10,28 @@ import java.util.Locale
 @Factory
 class AlbumsUIMapper {
 
-    fun toUIModel(albums: List<Album>): AlbumsUIModel {
-        return AlbumsUIModel(
-            albums = albums.toUIModel().toImmutableList()
+    fun toUIModel(albums: List<Album>): AlbumsUIModel =
+        AlbumsUIModel(
+            albums = albums.toUIModel().toImmutableList(),
         )
-    }
 
-    private fun List<Album>.toUIModel() = map {
-        val capitalisedTitle = it.title.capitalise()
-        AlbumUIModel(
-            id = it.id,
-            title = capitalisedTitle,
-            firstLetter = capitalisedTitle[FirstCharacterIndex].toString(),
-        )
-    }
+    private fun List<Album>.toUIModel() =
+        map {
+            val capitalisedTitle = it.title.capitalise()
+            AlbumUIModel(
+                id = it.id,
+                title = capitalisedTitle,
+                firstLetter = capitalisedTitle[FIRST_CHARACTER_INDEX].toString(),
+            )
+        }
 
-    private fun String.capitalise(): String {
-        return replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
-    }
+    private fun String.capitalise(): String =
+        replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
+        }
 
     companion object {
 
-        private const val FirstCharacterIndex = 0
+        private const val FIRST_CHARACTER_INDEX = 0
     }
 }

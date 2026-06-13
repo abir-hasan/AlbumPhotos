@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlinx.serialization.plugin)
@@ -27,7 +26,11 @@ android {
         }
     }
     kotlin {
-        jvmToolchain(libs.versions.jvm.get().toInt())
+        jvmToolchain(
+            libs.versions.jvm
+                .get()
+                .toInt(),
+        )
     }
     buildFeatures {
         compose = true
@@ -60,7 +63,7 @@ dependencies {
     implementation(libs.koin.annotations)
     ksp(libs.koin.ksp.compiler)
 
-    implementation (libs.coroutines.core)
+    implementation(libs.coroutines.core)
 
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.collections.immutable)

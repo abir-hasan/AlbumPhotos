@@ -56,7 +56,8 @@ class AlbumsViewModel(
         getAlbums(forceRefresh = true)
     }
 
-    private val albumsExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        _albumsUIState.value = UIState.Error
-    }
+    private val albumsExceptionHandler =
+        CoroutineExceptionHandler { _, exception ->
+            _albumsUIState.value = UIState.Error
+        }
 }

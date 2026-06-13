@@ -17,28 +17,27 @@ import retrofit2.converter.gson.GsonConverterFactory
 class DataModule {
 
     @Factory
-    fun provideLogger(): HttpLoggingInterceptor {
-        return HttpLoggingInterceptor().apply {
+    fun provideLogger(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor().apply {
             level = if (BuildConfig.DEBUG) BODY else BASIC
         }
-    }
 
     @Factory
-    fun provideHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
+    fun provideHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+        OkHttpClient
+            .Builder()
             .addInterceptor(loggingInterceptor)
             .build()
-    }
 
     @Single
-    fun provideRetrofit(client: OkHttpClient) = Retrofit.Builder()
-        .baseUrl(BuildConfig.AlbumBaseUrl)
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    fun provideRetrofit(client: OkHttpClient) =
+        Retrofit
+            .Builder()
+            .baseUrl(BuildConfig.AlbumBaseUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     @Single
-    fun albumAPI(retrofit: Retrofit): AlbumService {
-        return retrofit.create(AlbumService::class.java)
-    }
+    fun albumAPI(retrofit: Retrofit): AlbumService = retrofit.create(AlbumService::class.java)
 }

@@ -4,7 +4,11 @@ plugins {
 }
 
 kotlin {
-    jvmToolchain(libs.versions.jvm.get().toInt())
+    jvmToolchain(
+        libs.versions.jvm
+            .get()
+            .toInt(),
+    )
 }
 
 kotlin.sourceSets["main"].kotlin {
@@ -21,6 +25,7 @@ dependencies {
     implementation(libs.coroutines.core)
 
     // Test
+    testImplementation(project(":core:test"))
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)
     testImplementation(libs.jupiter)
@@ -28,6 +33,7 @@ dependencies {
     testImplementation(libs.mockk.core)
     testImplementation(libs.mockk.agent)
     testImplementation(libs.jeasy)
+    testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 tasks.withType<Test> {

@@ -18,22 +18,23 @@ class PhotosUIMapperTest {
     @Test
     fun `Given list of photos, when toUIModel called, then return mapped ui models`() {
         // Given
-        val photos = listOf(
-            AlbumPhoto(
-                albumId = "XYZ",
-                title = "new 1",
-                coverId = "1",
-                url = "http://www.test.com/full/1",
-                thumbnailUrl = "http://www.test.com/thumb/1",
-            ),
-            AlbumPhoto(
-                albumId = "XYZ",
-                title = "new 2",
-                coverId = "2",
-                url = "http://www.test.com/full/2",
-                thumbnailUrl = "http://www.test.com/thumb/2",
-            ),
-        )
+        val photos =
+            listOf(
+                AlbumPhoto(
+                    albumId = "XYZ",
+                    title = "new 1",
+                    coverId = "1",
+                    url = "http://www.test.com/full/1",
+                    thumbnailUrl = "http://www.test.com/thumb/1",
+                ),
+                AlbumPhoto(
+                    albumId = "XYZ",
+                    title = "new 2",
+                    coverId = "2",
+                    url = "http://www.test.com/full/2",
+                    thumbnailUrl = "http://www.test.com/thumb/2",
+                ),
+            )
 
         // When
         val result = photosUIMapper.toUIModel(photos)
@@ -41,22 +42,23 @@ class PhotosUIMapperTest {
         // Then
         kotlin.test.assertEquals(
             expected = result,
-            actual = PhotosUIModel(
-                listOf(
-                    PhotoUIModel(
-                        coverId = "1",
-                        title = "new 1",
-                        url = "http://www.test.com/full/1",
-                        thumbnailUrl = "http://www.test.com/thumb/1",
-                    ),
-                    PhotoUIModel(
-                        coverId = "2",
-                        title = "new 2",
-                        url = "http://www.test.com/full/2",
-                        thumbnailUrl = "http://www.test.com/thumb/2",
-                    ),
-                ).toImmutableList()
-            )
+            actual =
+                PhotosUIModel(
+                    listOf(
+                        PhotoUIModel(
+                            coverId = "1",
+                            title = "new 1",
+                            url = "http://www.test.com/full/1",
+                            thumbnailUrl = "http://www.test.com/thumb/1",
+                        ),
+                        PhotoUIModel(
+                            coverId = "2",
+                            title = "new 2",
+                            url = "http://www.test.com/full/2",
+                            thumbnailUrl = "http://www.test.com/thumb/2",
+                        ),
+                    ).toImmutableList(),
+                ),
         )
     }
 }

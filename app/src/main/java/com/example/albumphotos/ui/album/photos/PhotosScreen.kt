@@ -32,9 +32,10 @@ internal fun PhotosScreen(
     albumId: String,
     navHostController: NavHostController,
     modifier: Modifier = Modifier,
-    viewModel: PhotosViewModel = koinViewModel(
-        parameters = { parametersOf(PhotosArg(albumId)) },
-    )
+    viewModel: PhotosViewModel =
+        koinViewModel(
+            parameters = { parametersOf(PhotosArg(albumId)) },
+        ),
 ) {
     val albumsUIState by viewModel.photosUIState.collectAsState()
     viewModel.navigation.HandleNavigationEvents(navHostController)
@@ -61,32 +62,33 @@ private fun Photos(
         modifier = Modifier.padding(it),
     ) { state ->
         when (state) {
-            is UIState.Normal -> NormalContent(
-                photosUIModel = state.data,
-                onClickPhoto = onClickPhoto,
-            )
+            is UIState.Normal ->
+                NormalContent(
+                    photosUIModel = state.data,
+                    onClickPhoto = onClickPhoto,
+                )
             UIState.Loading -> {
                 LoadingContent(modifier = Modifier.fillMaxSize())
             }
-            UIState.Error -> FullScreenError(
-                onClickRetry = onClickRetry,
-            )
+            UIState.Error ->
+                FullScreenError(
+                    onClickRetry = onClickRetry,
+                )
         }
     }
 }
 
 @Composable
-private fun LoadingContent(modifier: Modifier = Modifier) = Box(
-    modifier = modifier,
-    contentAlignment = Alignment.Center,
-) {
-    CircularProgressIndicator()
-}
+private fun LoadingContent(modifier: Modifier = Modifier) =
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center,
+    ) {
+        CircularProgressIndicator()
+    }
 
 @Composable
-fun EventFlow<PhotosNavigationAction>.HandleNavigationEvents(
-    navHostController: NavHostController,
-) {
+fun EventFlow<PhotosNavigationAction>.HandleNavigationEvents(navHostController: NavHostController) {
     RetrieveAsEffect {
         when (it) {
             is PhotosNavigationAction.ShowPhoto -> {
@@ -95,6 +97,3 @@ fun EventFlow<PhotosNavigationAction>.HandleNavigationEvents(
         }
     }
 }
-
-
-

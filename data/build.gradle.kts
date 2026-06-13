@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
 }
 
@@ -10,11 +9,14 @@ android {
 
     defaultConfig {
         minSdk = ProjectConfiguration.MinSdk
-        targetSdk = ProjectConfiguration.TargetSdk
     }
 
     kotlin {
-        jvmToolchain(libs.versions.jvm.get().toInt())
+        jvmToolchain(
+            libs.versions.jvm
+                .get()
+                .toInt(),
+        )
     }
 
     buildFeatures {
@@ -52,8 +54,8 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.kotlin.datetime)
 
-
     // Test
+    testImplementation(project(":core:test"))
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)
     testImplementation(libs.jupiter)
@@ -62,6 +64,7 @@ dependencies {
     testImplementation(libs.mockk.agent)
 
     testImplementation(libs.junit)
+    testRuntimeOnly(libs.junit.platform.launcher)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

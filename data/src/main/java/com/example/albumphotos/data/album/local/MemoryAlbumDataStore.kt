@@ -17,15 +17,14 @@ class MemoryAlbumDataStore : AlbumDataStore {
         cachedAlbums = CachedValue(albums)
     }
 
-    override fun getAlbums(): CachedValue<List<Album>>? {
-        return cachedAlbums
-    }
+    override fun getAlbums(): CachedValue<List<Album>>? = cachedAlbums
 
-    override fun setAlbumPhotos(albumId: String, albumPhotos: List<AlbumPhoto>) {
+    override fun setAlbumPhotos(
+        albumId: String,
+        albumPhotos: List<AlbumPhoto>,
+    ) {
         cachedAlbumPhotoMap[albumId] = CachedValue(value = albumPhotos)
     }
 
-    override fun getAlbumPhotos(albumId: String): CachedValue<List<AlbumPhoto>>? {
-        return cachedAlbumPhotoMap[albumId]
-    }
+    override fun getAlbumPhotos(albumId: String): CachedValue<List<AlbumPhoto>>? = cachedAlbumPhotoMap[albumId]
 }

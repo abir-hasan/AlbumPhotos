@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
 }
 
@@ -10,7 +9,6 @@ android {
 
     defaultConfig {
         minSdk = ProjectConfiguration.MinSdk
-        targetSdk = ProjectConfiguration.TargetSdk
     }
 
     buildTypes {
@@ -21,7 +19,11 @@ android {
     }
 
     kotlin {
-        jvmToolchain(libs.versions.jvm.get().toInt())
+        jvmToolchain(
+            libs.versions.jvm
+                .get()
+                .toInt(),
+        )
     }
 }
 
@@ -39,11 +41,12 @@ dependencies {
     implementation(libs.koin.annotations)
     ksp(libs.koin.ksp.compiler)
 
-    implementation (libs.coroutines.core)
+    implementation(libs.coroutines.core)
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.atomicfu)
 
     // Test
+    testImplementation(project(":core:test"))
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)
     testImplementation(libs.jupiter)
@@ -54,6 +57,7 @@ dependencies {
     testImplementation(libs.turbine)
 
     testImplementation(libs.junit)
+    testRuntimeOnly(libs.junit.platform.launcher)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

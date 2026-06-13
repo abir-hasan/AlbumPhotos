@@ -18,22 +18,23 @@ internal class AlbumMapperTest {
     @Test
     fun `Given album response, when toAlbums called then return mapped data`() {
         // Given
-        val response = AlbumsResponse().apply {
-            add(
-                AlbumsResponseItem(
-                    id = 1724,
-                    title = "Test 1",
-                    userId = 6941,
+        val response =
+            AlbumsResponse().apply {
+                add(
+                    AlbumsResponseItem(
+                        id = 1724,
+                        title = "Test 1",
+                        userId = 6941,
+                    ),
                 )
-            )
-            add(
-                AlbumsResponseItem(
-                    id = 2000,
-                    title = "Test 2",
-                    userId = 6941,
+                add(
+                    AlbumsResponseItem(
+                        id = 2000,
+                        title = "Test 2",
+                        userId = 6941,
+                    ),
                 )
-            )
-        }
+            }
 
         // When
         val result = albumMapper.toAlbums(response)
@@ -41,16 +42,17 @@ internal class AlbumMapperTest {
         // Then
         assertEquals(
             expected = result,
-            actual = listOf(
-                Album(
-                    id = "1724",
-                    title = "Test 1",
+            actual =
+                listOf(
+                    Album(
+                        id = "1724",
+                        title = "Test 1",
+                    ),
+                    Album(
+                        id = "2000",
+                        title = "Test 2",
+                    ),
                 ),
-                Album(
-                    id = "2000",
-                    title = "Test 2",
-                )
-            )
         )
     }
 }

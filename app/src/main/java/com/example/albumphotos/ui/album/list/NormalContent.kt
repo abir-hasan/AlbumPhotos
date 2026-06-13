@@ -70,38 +70,42 @@ private fun AlbumItem(
     onClickAlbum: (AlbumUIModel) -> Unit,
     modifier: Modifier = Modifier,
 ) = Card(
-    modifier = modifier
-        .clip(shape = Shapes.medium)
-        .clickable { onClickAlbum(albumUIModel) },
+    modifier =
+        modifier
+            .clip(shape = Shapes.medium)
+            .clickable { onClickAlbum(albumUIModel) },
     shape = Shapes.medium,
 ) {
-    val gradient = listOf(
-        MaterialTheme.colorScheme.primary,
-        MaterialTheme.colorScheme.inversePrimary,
-    )
+    val gradient =
+        listOf(
+            MaterialTheme.colorScheme.primary,
+            MaterialTheme.colorScheme.inversePrimary,
+        )
 
     Row(
-        modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.surface)
-            .fillMaxWidth()
-            .padding(Spacing.x2),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .background(color = MaterialTheme.colorScheme.surface)
+                .fillMaxWidth()
+                .padding(Spacing.x2),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Box(
-            modifier = Modifier
-                .size(90.dp)
-                .border(
-                    border = BorderStroke(width = 1.dp, brush = Brush.horizontalGradient(colors = gradient)),
-                    shape = CircleShape,
-                )
-                .clip(CircleShape),
-            contentAlignment = Alignment.Center
+            modifier =
+                Modifier
+                    .size(90.dp)
+                    .border(
+                        border = BorderStroke(width = 1.dp, brush = Brush.horizontalGradient(colors = gradient)),
+                        shape = CircleShape,
+                    ).clip(CircleShape),
+            contentAlignment = Alignment.Center,
         ) {
             Text(
                 text = albumUIModel.firstLetter,
-                style = MaterialTheme.typography.displayLarge.copy(
-                    brush = Brush.verticalGradient(colors = gradient),
-                ),
+                style =
+                    MaterialTheme.typography.displayLarge.copy(
+                        brush = Brush.verticalGradient(colors = gradient),
+                    ),
                 textAlign = TextAlign.Center,
             )
         }

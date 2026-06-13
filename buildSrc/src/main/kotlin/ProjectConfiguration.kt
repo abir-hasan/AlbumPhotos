@@ -7,6 +7,6 @@ object ProjectConfiguration {
     const val ProjectName = "Album Photos"
 
     const val MinSdk = 26
-    const val TargetSdk = 34
-    const val CompileSdk = 34
+    const val TargetSdk = 36
+    const val CompileSdk = 36
 }

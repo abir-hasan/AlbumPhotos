@@ -16,7 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.example.albumphotos.presentation.album.photos.model.PhotoUIModel
 import com.example.albumphotos.presentation.album.photos.model.PhotosUIModel
 import com.example.albumphotos.ui.theme.Shapes
@@ -45,22 +45,24 @@ internal fun NormalContent(
 private fun PhotoItem(
     photoUIModel: PhotoUIModel,
     onClickPhoto: (PhotoUIModel) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = Column(
-    modifier = modifier
-        .padding(Spacing.x1)
-        .clickable { onClickPhoto(photoUIModel) }
-        .clip(Shapes.medium)
-        .background(
-            color = MaterialTheme.colorScheme.surface,
-            shape = Shapes.medium,
-        )
+    modifier =
+        modifier
+            .padding(Spacing.x1)
+            .clickable { onClickPhoto(photoUIModel) }
+            .clip(Shapes.medium)
+            .background(
+                color = MaterialTheme.colorScheme.surface,
+                shape = Shapes.medium,
+            ),
 ) {
     AsyncImage(
         model = photoUIModel.thumbnailUrl,
-        modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(1F),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .aspectRatio(1F),
         contentDescription = null,
     )
     Text(

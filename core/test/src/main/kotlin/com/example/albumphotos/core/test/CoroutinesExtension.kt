@@ -1,4 +1,4 @@
-package com.example.albumphotos.data.extension
+package com.example.albumphotos.core.test
 
 import io.mockk.every
 import io.mockk.mockkStatic
@@ -12,11 +12,14 @@ import org.junit.jupiter.api.extension.BeforeTestExecutionCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import kotlin.coroutines.CoroutineContext
 
-open class CoroutinesExtension : TestExtension(), BeforeTestExecutionCallback, AfterTestExecutionCallback {
+open class CoroutinesExtension :
+    TestExtension(),
+    BeforeTestExecutionCallback,
+    AfterTestExecutionCallback {
 
     private val testDispatcher = UnconfinedTestDispatcher()
 
-    override fun beforeTestExecution(context: ExtensionContext?) {
+    override fun beforeTestExecution(context: ExtensionContext) {
         Dispatchers.setMain(testDispatcher)
         mockkStatic(Dispatchers::class)
         every { Dispatchers.Main } answers { callOriginal() }
@@ -29,7 +32,7 @@ open class CoroutinesExtension : TestExtension(), BeforeTestExecutionCallback, A
         } answers { testDispatcher.plus(firstArg<CoroutineContext>()) }
     }
 
-    override fun afterTestExecution(context: ExtensionContext?) {
+    override fun afterTestExecution(context: ExtensionContext) {
         unmockkStatic(Dispatchers::class)
         Dispatchers.resetMain()
     }

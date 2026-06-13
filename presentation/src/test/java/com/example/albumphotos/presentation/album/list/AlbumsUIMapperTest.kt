@@ -19,16 +19,17 @@ class AlbumsUIMapperTest {
     @Test
     fun `Given list of album, when toUIModel called, then return mapped ui models`() {
         // Given
-        val albums = listOf(
-            Album(
-                id = "1",
-                title = "trust",
-            ),
-            Album(
-                id = "2",
-                title = "emptiness machine",
+        val albums =
+            listOf(
+                Album(
+                    id = "1",
+                    title = "trust",
+                ),
+                Album(
+                    id = "2",
+                    title = "emptiness machine",
+                ),
             )
-        )
 
         // When
         val result = albumsUIMapper.toUIModel(albums)
@@ -36,20 +37,21 @@ class AlbumsUIMapperTest {
         // Then
         assertEquals(
             expected = result,
-            actual = AlbumsUIModel(
-                listOf(
-                    AlbumUIModel(
-                        id = "1",
-                        title = "Trust",
-                        firstLetter = "T",
-                    ),
-                    AlbumUIModel(
-                        id = "2",
-                        title = "Emptiness machine",
-                        firstLetter = "E",
-                    ),
-                ).toImmutableList()
-            )
+            actual =
+                AlbumsUIModel(
+                    listOf(
+                        AlbumUIModel(
+                            id = "1",
+                            title = "Trust",
+                            firstLetter = "T",
+                        ),
+                        AlbumUIModel(
+                            id = "2",
+                            title = "Emptiness machine",
+                            firstLetter = "E",
+                        ),
+                    ).toImmutableList(),
+                ),
         )
     }
 }
