@@ -97,6 +97,9 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
+    excludes:
+      - "**/test/**"
+      - "**/androidTest/**"
   UnusedImports:
     active: true
   UnusedPrivateMember:
