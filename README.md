@@ -36,7 +36,7 @@ Unit tests run on the JVM with:
 - **easy-random** — test data generation
 
 ```bash
-./gradlew test   # run unit tests
+./gradlew test   # run unit tests on all the modules
 ```
 
 ## Code quality
