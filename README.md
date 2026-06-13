@@ -51,3 +51,8 @@ request and can be checked locally:
 ```
 
 Config lives in `config/detekt/detekt.yml` (detekt) and `.editorconfig` (ktlint).
+
+## Dependency updates
+
+**Renovate** keeps dependencies up to date, running every 4 weeks via a GitHub Action and opening
+PRs against `main`. Config is in `renovate.json`.
