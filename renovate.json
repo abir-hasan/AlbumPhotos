@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits"
+  ],
+  "baseBranches": ["main"],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "Group all Gradle/Kotlin dependency updates into a single PR.",
+      "matchManagers": ["gradle", "gradle-wrapper"],
+      "groupName": "gradle dependencies"
+    }
+  ]
+}

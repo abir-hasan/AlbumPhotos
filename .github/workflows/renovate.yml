@@ -1,0 +1,44 @@
+name: Renovate
+
+on:
+  # Cron can't express "every 4 weeks", so we run weekly and gate the actual
+  # Renovate run to every 4th week (see the "Every-4-weeks gate" step below).
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  # Allow on-demand runs (manual dispatch always runs, bypassing the gate).
+  workflow_dispatch:
+
+concurrency:
+  group: renovate
+  cancel-in-progress: false
+
+jobs:
+  renovate:
+    name: Run Renovate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Every-4-weeks gate
+        id: gate
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual dispatch — running."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [ $(( ($(date -u +%s) / 604800) % 4 )) -eq 0 ]; then
+            echo "Scheduled 4-week window — running."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Not the 4-week window — skipping this run."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Renovate
+        if: steps.gate.outputs.run == 'true'
+        uses: renovatebot/github-action@v46
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
