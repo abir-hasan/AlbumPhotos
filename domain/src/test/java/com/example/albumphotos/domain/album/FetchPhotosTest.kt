@@ -1,7 +1,7 @@
 package com.example.albumphotos.domain.album
 
 import com.example.albumphotos.domain.album.model.AlbumPhoto
-import com.example.albumphotos.domain.extension.CoroutinesExtension
+import com.example.albumphotos.core.test.CoroutinesExtension
 import io.mockk.coEvery
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK

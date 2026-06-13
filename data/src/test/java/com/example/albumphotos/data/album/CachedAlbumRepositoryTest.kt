@@ -5,7 +5,7 @@ import com.example.albumphotos.data.album.mappers.AlbumPhotoMapper
 import com.example.albumphotos.data.album.model.details.AlbumPhotosResponse
 import com.example.albumphotos.data.album.model.list.AlbumsResponse
 import com.example.albumphotos.data.album.network.AlbumService
-import com.example.albumphotos.data.extension.CoroutinesExtension
+import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.data.generic.CachedValue
 import com.example.albumphotos.domain.album.model.Album
 import com.example.albumphotos.domain.album.model.AlbumPhoto

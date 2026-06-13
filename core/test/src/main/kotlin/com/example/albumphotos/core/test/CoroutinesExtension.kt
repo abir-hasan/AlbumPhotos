@@ -1,4 +1,4 @@
-package com.example.albumphotos.data.extension
+package com.example.albumphotos.core.test
 
 import io.mockk.every
 import io.mockk.mockkStatic

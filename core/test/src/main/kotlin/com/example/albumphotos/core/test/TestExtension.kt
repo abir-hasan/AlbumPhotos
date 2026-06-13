@@ -1,4 +1,4 @@
-package com.example.albumphotos.domain.extension
+package com.example.albumphotos.core.test
 
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ParameterContext

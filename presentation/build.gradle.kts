@@ -42,6 +42,7 @@ dependencies {
     implementation(libs.atomicfu)
 
     // Test
+    testImplementation(project(":core:test"))
     testImplementation(kotlin("test"))
     testImplementation(libs.coroutines.test)
     testImplementation(libs.jupiter)

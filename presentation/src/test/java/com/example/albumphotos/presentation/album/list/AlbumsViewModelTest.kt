@@ -5,7 +5,7 @@ import com.example.albumphotos.domain.album.FetchAlbums
 import com.example.albumphotos.domain.album.model.Album
 import com.example.albumphotos.presentation.album.list.model.AlbumUIModel
 import com.example.albumphotos.presentation.album.list.model.AlbumsUIModel
-import com.example.albumphotos.presentation.extension.CoroutinesExtension
+import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.presentation.generic.UIState
 import com.example.albumphotos.presentation.generic.event.Event
 import io.mockk.ConstantAnswer

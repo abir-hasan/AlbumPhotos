@@ -7,7 +7,7 @@ import com.example.albumphotos.presentation.album.photos.PhotosNavigationAction.
 import com.example.albumphotos.presentation.album.photos.model.PhotoUIModel
 import com.example.albumphotos.presentation.album.photos.model.PhotosArg
 import com.example.albumphotos.presentation.album.photos.model.PhotosUIModel
-import com.example.albumphotos.presentation.extension.CoroutinesExtension
+import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.presentation.generic.UIState
 import com.example.albumphotos.presentation.generic.event.Event
 import io.mockk.ConstantAnswer
