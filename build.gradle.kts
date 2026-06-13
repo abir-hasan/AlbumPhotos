@@ -22,6 +22,13 @@ subprojects {
         config.setFrom(rootProject.files("config/detekt/detekt.yml"))
     }
 
+    extensions.configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        filter {
+            // Generated sources (e.g. KSP/Koin) are not ours to format.
+            exclude { it.file.path.contains("/generated/") }
+        }
+    }
+
     dependencies {
         "detektPlugins"(libs.findLibrary("detekt-compose-rules").get())
     }
