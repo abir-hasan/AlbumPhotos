@@ -12,10 +12,10 @@ data class CachedValue<T>(
     fun takeValue(isManualRefresh: Boolean = false): T? = value.takeUnless { isExpired(isManualRefresh) }
 
     private fun getCacheDuration(isManualRefresh: Boolean): Long =
-        if (isManualRefresh) ManualRefreshCachingDurationMs else NormalCachingDurationMs
+        if (isManualRefresh) MANUAL_REFRESH_CACHING_DURATION_MS else NORMAL_CACHING_DURATION_MS
 
     companion object {
-        private const val NormalCachingDurationMs = 15L * 60L * 1000L
-        private const val ManualRefreshCachingDurationMs = 15_000L
+        private const val NORMAL_CACHING_DURATION_MS = 15L * 60L * 1000L
+        private const val MANUAL_REFRESH_CACHING_DURATION_MS = 15_000L
     }
 }

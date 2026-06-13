@@ -20,7 +20,7 @@ class AlbumsUIMapper {
             AlbumUIModel(
                 id = it.id,
                 title = capitalisedTitle,
-                firstLetter = capitalisedTitle[FirstCharacterIndex].toString(),
+                firstLetter = capitalisedTitle[FIRST_CHARACTER_INDEX].toString(),
             )
         }
 
@@ -30,6 +30,6 @@ class AlbumsUIMapper {
         }
 
     companion object {
-        private const val FirstCharacterIndex = 0
+        private const val FIRST_CHARACTER_INDEX = 0
     }
 }
