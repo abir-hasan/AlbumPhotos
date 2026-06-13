@@ -57,6 +57,7 @@ class AlbumsViewModelTest {
         }
 
     @Test
+    @Suppress("TooGenericExceptionThrown")
     fun `Given fetch albums throws error, when getAlbums called, then return state should be error`() = runTest {
         // Given
         coEvery { fetchAlbums(false) } coAnswers {

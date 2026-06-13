@@ -64,6 +64,7 @@ class PhotosViewModelTest {
         }
 
     @Test
+    @Suppress("TooGenericExceptionThrown")
     fun `Given album id, when fetch photos throws error, then return state should be error`() =
         runTest {
             // Given

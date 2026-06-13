@@ -28,7 +28,7 @@ import com.valentinilk.shimmer.shimmer
 internal fun LoadingContent(
     modifier: Modifier = Modifier,
 ) = Column(modifier = modifier.verticalScroll(rememberScrollState())) {
-    repeat(8) {
+    repeat(LOADING_ITEM_COUNT) {
         LoadingItem(
             modifier = Modifier
                 .padding(horizontal = Spacing.x1)
@@ -80,3 +80,5 @@ private fun LoadingItem(
         )
     }
 }
+
+private const val LOADING_ITEM_COUNT = 8
