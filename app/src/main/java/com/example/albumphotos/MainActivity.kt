@@ -20,7 +20,6 @@ import com.example.albumphotos.ui.album.photos.PhotosScreen
 import com.example.albumphotos.ui.theme.AlbumPhotosTheme
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,7 +35,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun AlbumPhotosNavHost(
     navHostController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) = NavHost(
     navController = navHostController,
     startDestination = Albums,

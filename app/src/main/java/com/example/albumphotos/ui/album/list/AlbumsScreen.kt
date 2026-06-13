@@ -62,24 +62,24 @@ private fun Albums(
         modifier = Modifier.padding(it),
     ) { state ->
         when (state) {
-            is UIState.Normal -> NormalContent(
-                albumsUIModel = state.data,
-                onClickAlbum = onClickAlbum,
-                onRefresh = onRefresh,
-                refreshing = refreshing,
-            )
+            is UIState.Normal ->
+                NormalContent(
+                    albumsUIModel = state.data,
+                    onClickAlbum = onClickAlbum,
+                    onRefresh = onRefresh,
+                    refreshing = refreshing,
+                )
             UIState.Loading -> LoadingContent()
-            UIState.Error -> FullScreenError(
-                onClickRetry = onClickRetry,
-            )
+            UIState.Error ->
+                FullScreenError(
+                    onClickRetry = onClickRetry,
+                )
         }
     }
 }
 
 @Composable
-fun EventFlow<AlbumsNavigationAction>.HandleNavigationEvents(
-    navHostController: NavHostController,
-) {
+fun EventFlow<AlbumsNavigationAction>.HandleNavigationEvents(navHostController: NavHostController) {
     RetrieveAsEffect {
         when (it) {
             is AlbumsNavigationAction.OpenPhotos -> {

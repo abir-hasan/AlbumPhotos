@@ -27,12 +27,12 @@ internal fun FullScreenError(
     onClickRetry: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) = Surface(
-    modifier = modifier.fillMaxSize()
+    modifier = modifier.fillMaxSize(),
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             painter = painterResource(R.drawable.ic_error_outline),

@@ -3,8 +3,6 @@ package com.example.albumphotos.data.generic
 import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
-import kotlin.time.Clock
-import kotlin.time.Instant
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNull
@@ -12,9 +10,10 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 internal class CachedValueTest {
-
     @BeforeEach
     fun setup() {
         mockkObject(Clock.System)
@@ -81,7 +80,7 @@ internal class CachedValueTest {
         // Then
         assertEquals(
             expected = result.takeValue(false),
-            actual = ""
+            actual = "",
         )
     }
 

@@ -12,7 +12,11 @@ android {
     }
 
     kotlin {
-        jvmToolchain(libs.versions.jvm.get().toInt())
+        jvmToolchain(
+            libs.versions.jvm
+                .get()
+                .toInt(),
+        )
     }
 
     buildFeatures {
@@ -49,7 +53,6 @@ dependencies {
 
     implementation(libs.coroutines.core)
     implementation(libs.kotlin.datetime)
-
 
     // Test
     testImplementation(project(":core:test"))

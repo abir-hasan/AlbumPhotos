@@ -23,7 +23,6 @@ class PhotosViewModel(
     private val fetchPhotos: FetchPhotos,
     private val mapper: PhotosUIMapper,
 ) : ViewModel() {
-
     private val _photosUIState = MutableStateFlow<UIState<PhotosUIModel>>(UIState.Loading)
     val photosUIState by lazy {
         getPhotos()
@@ -47,7 +46,8 @@ class PhotosViewModel(
         _navigation.setEvent(ShowPhoto(photoUIModel.url))
     }
 
-    private val photosExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        _photosUIState.value = UIState.Error
-    }
+    private val photosExceptionHandler =
+        CoroutineExceptionHandler { _, exception ->
+            _photosUIState.value = UIState.Error
+        }
 }

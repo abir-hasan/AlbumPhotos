@@ -1,13 +1,13 @@
 package com.example.albumphotos.presentation.album.photos
 
 import app.cash.turbine.test
+import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.domain.album.FetchPhotos
 import com.example.albumphotos.domain.album.model.AlbumPhoto
 import com.example.albumphotos.presentation.album.photos.PhotosNavigationAction.ShowPhoto
 import com.example.albumphotos.presentation.album.photos.model.PhotoUIModel
 import com.example.albumphotos.presentation.album.photos.model.PhotosArg
 import com.example.albumphotos.presentation.album.photos.model.PhotosUIModel
-import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.presentation.generic.UIState
 import com.example.albumphotos.presentation.generic.event.Event
 import io.mockk.ConstantAnswer
@@ -27,7 +27,6 @@ import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class, CoroutinesExtension::class)
 class PhotosViewModelTest {
-
     @MockK
     private lateinit var photosArg: PhotosArg
 
@@ -39,7 +38,6 @@ class PhotosViewModelTest {
 
     @InjectMockKs
     private lateinit var viewModel: PhotosViewModel
-
 
     @Test
     fun `Given and album id, when fetch photos is successful, then return mapped ui model in normal state`() =
@@ -84,42 +82,46 @@ class PhotosViewModelTest {
         }
 
     @Test
-    fun `Given initial fetch photos failed, When onRetryClicked, then fetch and emit mapped photos`() = runTest {
-        // Given
-        val photoList = mockk<List<AlbumPhoto>>()
-        val photosUIModel = mockk<PhotosUIModel>()
-        val albumId = "xyz"
-        every { photosArg.albumId } returns albumId
-        coEvery { fetchPhotos(albumId) } answers ManyAnswersAnswer(
-            listOf(
-                ThrowingAnswer(RuntimeException("Something went wrong!")),
-                ConstantAnswer(photoList)
-            )
-        )
-        every { mapper.toUIModel(photoList) } returns photosUIModel
+    fun `Given initial fetch photos failed, When onRetryClicked, then fetch and emit mapped photos`() =
+        runTest {
+            // Given
+            val photoList = mockk<List<AlbumPhoto>>()
+            val photosUIModel = mockk<PhotosUIModel>()
+            val albumId = "xyz"
+            every { photosArg.albumId } returns albumId
+            coEvery { fetchPhotos(albumId) } answers
+                ManyAnswersAnswer(
+                    listOf(
+                        ThrowingAnswer(RuntimeException("Something went wrong!")),
+                        ConstantAnswer(photoList),
+                    ),
+                )
+            every { mapper.toUIModel(photoList) } returns photosUIModel
 
-        viewModel.photosUIState.test {
-            assertEquals(awaitItem(), UIState.Error)
-            // When
-            viewModel.onRetryClicked()
-            // Then
-            assertEquals(awaitItem(), UIState.Normal(photosUIModel))
+            viewModel.photosUIState.test {
+                assertEquals(awaitItem(), UIState.Error)
+                // When
+                viewModel.onRetryClicked()
+                // Then
+                assertEquals(awaitItem(), UIState.Normal(photosUIModel))
+            }
         }
-    }
 
     @Test
-    fun `Given a photo, when onPhotoClicked, then open photo with the the full image url`() = runTest {
-        // Given
-        val url = "http://www.test.com/full/1.jpg"
-        val photoUIModel = mockk<PhotoUIModel> {
-            every { this@mockk.url } returns url
-        }
+    fun `Given a photo, when onPhotoClicked, then open photo with the the full image url`() =
+        runTest {
+            // Given
+            val url = "http://www.test.com/full/1.jpg"
+            val photoUIModel =
+                mockk<PhotoUIModel> {
+                    every { this@mockk.url } returns url
+                }
 
-        // When
-        viewModel.onPhotoClicked(photoUIModel)
+            // When
+            viewModel.onPhotoClicked(photoUIModel)
 
-        viewModel.navigation.test {
-            assertEquals(awaitItem(), Event(ShowPhoto(url)))
+            viewModel.navigation.test {
+                assertEquals(awaitItem(), Event(ShowPhoto(url)))
+            }
         }
-    }
 }

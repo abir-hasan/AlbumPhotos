@@ -6,13 +6,11 @@ import org.koin.core.annotation.Factory
 
 @Factory
 class AlbumMapper {
-
-    fun toAlbums(response: AlbumsResponse): List<Album> {
-        return response.map {
+    fun toAlbums(response: AlbumsResponse): List<Album> =
+        response.map {
             Album(
                 id = it.id.toString(),
                 title = it.title,
             )
         }
-    }
 }

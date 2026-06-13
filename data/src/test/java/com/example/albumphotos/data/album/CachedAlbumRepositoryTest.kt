@@ -1,11 +1,11 @@
 package com.example.albumphotos.data.album
 
+import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.data.album.mappers.AlbumMapper
 import com.example.albumphotos.data.album.mappers.AlbumPhotoMapper
 import com.example.albumphotos.data.album.model.details.AlbumPhotosResponse
 import com.example.albumphotos.data.album.model.list.AlbumsResponse
 import com.example.albumphotos.data.album.network.AlbumService
-import com.example.albumphotos.core.test.CoroutinesExtension
 import com.example.albumphotos.data.generic.CachedValue
 import com.example.albumphotos.domain.album.model.Album
 import com.example.albumphotos.domain.album.model.AlbumPhoto
@@ -23,7 +23,6 @@ import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class, CoroutinesExtension::class)
 internal class CachedAlbumRepositoryTest {
-
     @MockK
     private lateinit var albumService: AlbumService
 
@@ -56,7 +55,7 @@ internal class CachedAlbumRepositoryTest {
             // Then
             assertEquals(
                 actual = result,
-                expected = albumList
+                expected = albumList,
             )
             verify { albumDataStore.setAlbums(albumList) }
         }
@@ -67,9 +66,10 @@ internal class CachedAlbumRepositoryTest {
             // Given
             val isManualRefresh = false
             val albumList = mockk<List<Album>>()
-            val cachedAlbumList = mockk<CachedValue<List<Album>>> {
-                every { takeValue(isManualRefresh) } returns albumList
-            }
+            val cachedAlbumList =
+                mockk<CachedValue<List<Album>>> {
+                    every { takeValue(isManualRefresh) } returns albumList
+                }
             every { albumDataStore.getAlbums() } returns cachedAlbumList
 
             // When
@@ -78,7 +78,7 @@ internal class CachedAlbumRepositoryTest {
             // Then
             assertEquals(
                 actual = result,
-                expected = albumList
+                expected = albumList,
             )
             verify(inverse = true) { albumDataStore.setAlbums(any()) }
         }
@@ -88,9 +88,10 @@ internal class CachedAlbumRepositoryTest {
         runTest {
             // Given
             val isManualRefresh = false
-            val expiredAlbumList = mockk<CachedValue<List<Album>>> {
-                every { takeValue(isManualRefresh) } returns null
-            }
+            val expiredAlbumList =
+                mockk<CachedValue<List<Album>>> {
+                    every { takeValue(isManualRefresh) } returns null
+                }
             every { albumDataStore.getAlbums() } returns expiredAlbumList
 
             val albumResponse = mockk<AlbumsResponse>()
@@ -104,7 +105,7 @@ internal class CachedAlbumRepositoryTest {
             // Then
             assertEquals(
                 actual = result,
-                expected = albumList
+                expected = albumList,
             )
             verify { albumDataStore.setAlbums(albumList) }
         }
@@ -126,7 +127,7 @@ internal class CachedAlbumRepositoryTest {
             // Then
             assertEquals(
                 actual = result,
-                expected = albumPhotoList
+                expected = albumPhotoList,
             )
             verify {
                 albumDataStore.setAlbumPhotos(
@@ -142,9 +143,10 @@ internal class CachedAlbumRepositoryTest {
             // Given
             val albumId = "album-id-1"
             val albumPhotoList = mockk<List<AlbumPhoto>>()
-            val cachedAlbumPhotoList = mockk<CachedValue<List<AlbumPhoto>>> {
-                every { takeValue() } returns albumPhotoList
-            }
+            val cachedAlbumPhotoList =
+                mockk<CachedValue<List<AlbumPhoto>>> {
+                    every { takeValue() } returns albumPhotoList
+                }
             every { albumDataStore.getAlbumPhotos(albumId) } returns cachedAlbumPhotoList
 
             // When
@@ -153,7 +155,7 @@ internal class CachedAlbumRepositoryTest {
             // Then
             assertEquals(
                 actual = result,
-                expected = albumPhotoList
+                expected = albumPhotoList,
             )
             verify(inverse = true) { albumDataStore.setAlbumPhotos(any(), any()) }
         }
@@ -165,9 +167,10 @@ internal class CachedAlbumRepositoryTest {
             val albumId = "album-id-1"
             val albumPhotosResponse = mockk<AlbumPhotosResponse>()
             val albumPhotoList = mockk<List<AlbumPhoto>>()
-            val cachedAlbumPhotoList = mockk<CachedValue<List<AlbumPhoto>>> {
-                every { takeValue() } returns null
-            }
+            val cachedAlbumPhotoList =
+                mockk<CachedValue<List<AlbumPhoto>>> {
+                    every { takeValue() } returns null
+                }
             every { albumDataStore.getAlbumPhotos(albumId) } returns cachedAlbumPhotoList
             coEvery { albumService.getPhotos(albumId) } returns albumPhotosResponse
             every { albumPhotoMapper.toAlbumPhotos(albumPhotosResponse) } returns albumPhotoList
@@ -178,7 +181,7 @@ internal class CachedAlbumRepositoryTest {
             // Then
             assertEquals(
                 actual = result,
-                expected = albumPhotoList
+                expected = albumPhotoList,
             )
             verify {
                 albumDataStore.setAlbumPhotos(

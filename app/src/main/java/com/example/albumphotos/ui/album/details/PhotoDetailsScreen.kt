@@ -30,7 +30,7 @@ private fun ContentView(
     url: String,
     modifier: Modifier = Modifier,
 ) = Box(
-    modifier = modifier.background(color = MaterialTheme.colorScheme.background)
+    modifier = modifier.background(color = MaterialTheme.colorScheme.background),
 ) {
     SubcomposeAsyncImage(
         model = url,
@@ -40,14 +40,15 @@ private fun ContentView(
         loading = {
             Box {
                 CircularProgressIndicator(
-                    modifier = Modifier
-                        .size(64.dp)
-                        .align(Alignment.Center)
+                    modifier =
+                        Modifier
+                            .size(64.dp)
+                            .align(Alignment.Center),
                 )
             }
         },
         error = {
             FullScreenError(onClickRetry = null)
-        }
+        },
     )
 }

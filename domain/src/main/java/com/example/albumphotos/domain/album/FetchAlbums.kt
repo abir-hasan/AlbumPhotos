@@ -7,8 +7,6 @@ import org.koin.core.annotation.Factory
 class FetchAlbums(
     private val albumRepository: AlbumRepository,
 ) {
-
-    suspend operator fun invoke(isManualRefresh: Boolean = false): List<Album> {
-        return albumRepository.getAlbums(isManualRefresh)
-    }
+    suspend operator fun invoke(isManualRefresh: Boolean = false): List<Album> =
+        albumRepository.getAlbums(isManualRefresh)
 }

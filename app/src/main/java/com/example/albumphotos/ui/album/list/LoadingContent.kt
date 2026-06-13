@@ -25,60 +25,63 @@ import com.example.albumphotos.ui.theme.Spacing
 import com.valentinilk.shimmer.shimmer
 
 @Composable
-internal fun LoadingContent(
-    modifier: Modifier = Modifier,
-) = Column(modifier = modifier.verticalScroll(rememberScrollState())) {
-    repeat(LOADING_ITEM_COUNT) {
-        LoadingItem(
-            modifier = Modifier
-                .padding(horizontal = Spacing.x1)
-                .padding(top = Spacing.x1),
-        )
-    }
-}
-
-@Composable
-private fun LoadingItem(
-    modifier: Modifier = Modifier
-) = Card(
-    modifier = modifier
-        .clip(shape = Shapes.medium),
-    shape = Shapes.medium,
-) {
-    val shimmerColor = MaterialTheme.colorScheme.secondary
-    Row(
-        modifier = Modifier
-            .background(color = MaterialTheme.colorScheme.surface)
-            .fillMaxWidth()
-            .padding(Spacing.x2)
-            .shimmer(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Box(
-            modifier = Modifier
-                .size(90.dp)
-                .border(
-                    color = MaterialTheme.colorScheme.outline,
-                    shape = CircleShape,
-                    width = 1.dp,
-                )
-                .clip(CircleShape),
-            contentAlignment = Alignment.Center
-        ) {
-            Spacer(
-                modifier = Modifier
-                    .size(35.dp, 60.dp)
-                    .background(color = shimmerColor)
+internal fun LoadingContent(modifier: Modifier = Modifier) =
+    Column(modifier = modifier.verticalScroll(rememberScrollState())) {
+        repeat(LOADING_ITEM_COUNT) {
+            LoadingItem(
+                modifier =
+                    Modifier
+                        .padding(horizontal = Spacing.x1)
+                        .padding(top = Spacing.x1),
             )
         }
-        Spacer(
-            modifier = Modifier
-                .padding(start = Spacing.x2)
-                .height(20.dp)
-                .fillMaxWidth()
-                .background(color = shimmerColor)
-        )
     }
-}
+
+@Composable
+private fun LoadingItem(modifier: Modifier = Modifier) =
+    Card(
+        modifier =
+            modifier
+                .clip(shape = Shapes.medium),
+        shape = Shapes.medium,
+    ) {
+        val shimmerColor = MaterialTheme.colorScheme.secondary
+        Row(
+            modifier =
+                Modifier
+                    .background(color = MaterialTheme.colorScheme.surface)
+                    .fillMaxWidth()
+                    .padding(Spacing.x2)
+                    .shimmer(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(
+                modifier =
+                    Modifier
+                        .size(90.dp)
+                        .border(
+                            color = MaterialTheme.colorScheme.outline,
+                            shape = CircleShape,
+                            width = 1.dp,
+                        ).clip(CircleShape),
+                contentAlignment = Alignment.Center,
+            ) {
+                Spacer(
+                    modifier =
+                        Modifier
+                            .size(35.dp, 60.dp)
+                            .background(color = shimmerColor),
+                )
+            }
+            Spacer(
+                modifier =
+                    Modifier
+                        .padding(start = Spacing.x2)
+                        .height(20.dp)
+                        .fillMaxWidth()
+                        .background(color = shimmerColor),
+            )
+        }
+    }
 
 private const val LOADING_ITEM_COUNT = 8

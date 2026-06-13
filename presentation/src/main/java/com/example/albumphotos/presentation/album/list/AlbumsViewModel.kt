@@ -20,7 +20,6 @@ class AlbumsViewModel(
     private val fetchAlbums: FetchAlbums,
     private val mapper: AlbumsUIMapper,
 ) : ViewModel() {
-
     private val _albumsUIState = MutableStateFlow<UIState<AlbumsUIModel>>(UIState.Loading)
     val albumsUIState by lazy {
         getAlbums(forceRefresh = false)
@@ -56,7 +55,8 @@ class AlbumsViewModel(
         getAlbums(forceRefresh = true)
     }
 
-    private val albumsExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        _albumsUIState.value = UIState.Error
-    }
+    private val albumsExceptionHandler =
+        CoroutineExceptionHandler { _, exception ->
+            _albumsUIState.value = UIState.Error
+        }
 }

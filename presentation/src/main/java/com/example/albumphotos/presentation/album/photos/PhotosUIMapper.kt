@@ -8,19 +8,18 @@ import org.koin.core.annotation.Factory
 
 @Factory
 class PhotosUIMapper {
-
-    fun toUIModel(photos: List<AlbumPhoto>): PhotosUIModel {
-        return PhotosUIModel(
-            photos = photos.toUIModel().toImmutableList()
+    fun toUIModel(photos: List<AlbumPhoto>): PhotosUIModel =
+        PhotosUIModel(
+            photos = photos.toUIModel().toImmutableList(),
         )
-    }
 
-    private fun List<AlbumPhoto>.toUIModel() = map {
-        PhotoUIModel(
-            coverId = it.coverId,
-            thumbnailUrl = it.thumbnailUrl,
-            url = it.url,
-            title = it.title
-        )
-    }
+    private fun List<AlbumPhoto>.toUIModel() =
+        map {
+            PhotoUIModel(
+                coverId = it.coverId,
+                thumbnailUrl = it.thumbnailUrl,
+                url = it.url,
+                title = it.title,
+            )
+        }
 }

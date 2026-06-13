@@ -15,28 +15,27 @@ class CachedAlbumRepository(
     private val albumMapper: AlbumMapper,
     private val albumPhotoMapper: AlbumPhotoMapper,
 ) : AlbumRepository {
-
-    override suspend fun getAlbums(isManualRefresh: Boolean): List<Album> {
-        return albumDataStore.getAlbums()
+    override suspend fun getAlbums(isManualRefresh: Boolean): List<Album> =
+        albumDataStore
+            .getAlbums()
             ?.takeValue(isManualRefresh)
             ?: fetchAlbumsAndStore()
-    }
 
-    private suspend fun fetchAlbumsAndStore(): List<Album> {
-        return albumService.getAlbums()
+    private suspend fun fetchAlbumsAndStore(): List<Album> =
+        albumService
+            .getAlbums()
             .let(albumMapper::toAlbums)
             .also { albumDataStore.setAlbums(it) }
-    }
 
-    override suspend fun getAlbumPhotos(id: String): List<AlbumPhoto> {
-        return albumDataStore.getAlbumPhotos(id)
+    override suspend fun getAlbumPhotos(id: String): List<AlbumPhoto> =
+        albumDataStore
+            .getAlbumPhotos(id)
             ?.takeValue()
             ?: fetchAlbumPhotosAndStore(id)
-    }
 
-    private suspend fun fetchAlbumPhotosAndStore(id: String): List<AlbumPhoto> {
-        return albumService.getPhotos(id)
+    private suspend fun fetchAlbumPhotosAndStore(id: String): List<AlbumPhoto> =
+        albumService
+            .getPhotos(id)
             .let(albumPhotoMapper::toAlbumPhotos)
             .also { albumDataStore.setAlbumPhotos(id, it) }
-    }
 }

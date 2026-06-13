@@ -6,10 +6,12 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlinx.serialization.plugin) apply false
     alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.ktlint) apply false
 }
 
 subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
     val libs = rootProject.extensions
         .getByType<org.gradle.api.artifacts.VersionCatalogsExtension>()

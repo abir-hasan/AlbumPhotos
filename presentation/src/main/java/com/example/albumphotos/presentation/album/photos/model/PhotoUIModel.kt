@@ -7,5 +7,5 @@ data class PhotoUIModel(
     val coverId: String,
     val thumbnailUrl: String,
     val url: String,
-    val title:String,
+    val title: String,
 )

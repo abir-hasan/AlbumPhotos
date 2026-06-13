@@ -19,7 +19,11 @@ android {
     }
 
     kotlin {
-        jvmToolchain(libs.versions.jvm.get().toInt())
+        jvmToolchain(
+            libs.versions.jvm
+                .get()
+                .toInt(),
+        )
     }
 }
 
@@ -37,7 +41,7 @@ dependencies {
     implementation(libs.koin.annotations)
     ksp(libs.koin.ksp.compiler)
 
-    implementation (libs.coroutines.core)
+    implementation(libs.coroutines.core)
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.atomicfu)
 

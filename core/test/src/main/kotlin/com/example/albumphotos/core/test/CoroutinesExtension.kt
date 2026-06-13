@@ -12,8 +12,10 @@ import org.junit.jupiter.api.extension.BeforeTestExecutionCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import kotlin.coroutines.CoroutineContext
 
-open class CoroutinesExtension : TestExtension(), BeforeTestExecutionCallback, AfterTestExecutionCallback {
-
+open class CoroutinesExtension :
+    TestExtension(),
+    BeforeTestExecutionCallback,
+    AfterTestExecutionCallback {
     private val testDispatcher = UnconfinedTestDispatcher()
 
     override fun beforeTestExecution(context: ExtensionContext) {
