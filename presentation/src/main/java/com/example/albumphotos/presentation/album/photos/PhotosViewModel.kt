@@ -23,6 +23,7 @@ class PhotosViewModel(
     private val fetchPhotos: FetchPhotos,
     private val mapper: PhotosUIMapper,
 ) : ViewModel() {
+
     private val _photosUIState = MutableStateFlow<UIState<PhotosUIModel>>(UIState.Loading)
     val photosUIState by lazy {
         getPhotos()

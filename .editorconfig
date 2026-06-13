@@ -148,6 +148,8 @@ ij_kotlin_block_comment_add_space = false
 ij_kotlin_use_custom_formatting_for_modifiers = true
 # Composable functions use PascalCase by design — exempt them from function-naming
 ktlint_function_naming_ignore_when_annotated_with = Composable
+# Allow an empty first line at the start of a class body
+ktlint_standard_no-empty-first-line-in-class-body = disabled
 
 # Load/Save
 ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL

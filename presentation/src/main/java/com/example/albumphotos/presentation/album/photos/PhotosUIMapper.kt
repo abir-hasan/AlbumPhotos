@@ -8,6 +8,7 @@ import org.koin.core.annotation.Factory
 
 @Factory
 class PhotosUIMapper {
+
     fun toUIModel(photos: List<AlbumPhoto>): PhotosUIModel =
         PhotosUIModel(
             photos = photos.toUIModel().toImmutableList(),

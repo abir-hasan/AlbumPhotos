@@ -15,6 +15,7 @@ import kotlin.test.assertFailsWith
 
 @ExtendWith(MockKExtension::class, CoroutinesExtension::class)
 class FetchAlbumsTest {
+
     @MockK
     private lateinit var albumRepository: AlbumRepository
 

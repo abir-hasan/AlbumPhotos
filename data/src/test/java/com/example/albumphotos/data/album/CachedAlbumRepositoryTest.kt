@@ -23,6 +23,7 @@ import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class, CoroutinesExtension::class)
 internal class CachedAlbumRepositoryTest {
+
     @MockK
     private lateinit var albumService: AlbumService
 

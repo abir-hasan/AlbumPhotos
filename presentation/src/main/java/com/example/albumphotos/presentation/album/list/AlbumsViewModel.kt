@@ -20,6 +20,7 @@ class AlbumsViewModel(
     private val fetchAlbums: FetchAlbums,
     private val mapper: AlbumsUIMapper,
 ) : ViewModel() {
+
     private val _albumsUIState = MutableStateFlow<UIState<AlbumsUIModel>>(UIState.Loading)
     val albumsUIState by lazy {
         getAlbums(forceRefresh = false)

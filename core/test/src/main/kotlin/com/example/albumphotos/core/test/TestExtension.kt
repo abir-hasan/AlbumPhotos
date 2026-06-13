@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.TestInstancePostProcessor
 abstract class TestExtension :
     TestInstancePostProcessor,
     ParameterResolver {
+
     override fun postProcessTestInstance(
         testInstance: Any,
         context: ExtensionContext,

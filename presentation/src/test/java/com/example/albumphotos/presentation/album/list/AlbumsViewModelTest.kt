@@ -25,6 +25,7 @@ import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class, CoroutinesExtension::class)
 class AlbumsViewModelTest {
+
     @MockK
     private lateinit var fetchAlbums: FetchAlbums
 

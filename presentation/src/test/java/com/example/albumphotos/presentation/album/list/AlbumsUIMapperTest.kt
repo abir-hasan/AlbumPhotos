@@ -12,6 +12,7 @@ import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class)
 class AlbumsUIMapperTest {
+
     @InjectMockKs
     private lateinit var albumsUIMapper: AlbumsUIMapper
 

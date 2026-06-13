@@ -7,5 +7,6 @@ import org.koin.core.annotation.Factory
 class FetchPhotos(
     private val albumRepository: AlbumRepository,
 ) {
+
     suspend operator fun invoke(id: String): List<AlbumPhoto> = albumRepository.getAlbumPhotos(id)
 }

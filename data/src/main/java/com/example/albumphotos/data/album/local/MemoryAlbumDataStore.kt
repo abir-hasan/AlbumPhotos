@@ -8,6 +8,7 @@ import org.koin.core.annotation.Single
 
 @Single
 class MemoryAlbumDataStore : AlbumDataStore {
+
     private var cachedAlbums: CachedValue<List<Album>>? = null
 
     private val cachedAlbumPhotoMap = mutableMapOf<String, CachedValue<List<AlbumPhoto>>>()

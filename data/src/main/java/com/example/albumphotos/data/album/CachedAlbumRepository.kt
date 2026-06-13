@@ -15,6 +15,7 @@ class CachedAlbumRepository(
     private val albumMapper: AlbumMapper,
     private val albumPhotoMapper: AlbumPhotoMapper,
 ) : AlbumRepository {
+
     override suspend fun getAlbums(isManualRefresh: Boolean): List<Album> =
         albumDataStore
             .getAlbums()

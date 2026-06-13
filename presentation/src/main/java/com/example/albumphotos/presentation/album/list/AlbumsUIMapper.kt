@@ -9,6 +9,7 @@ import java.util.Locale
 
 @Factory
 class AlbumsUIMapper {
+
     fun toUIModel(albums: List<Album>): AlbumsUIModel =
         AlbumsUIModel(
             albums = albums.toUIModel().toImmutableList(),
@@ -30,6 +31,7 @@ class AlbumsUIMapper {
         }
 
     companion object {
+
         private const val FIRST_CHARACTER_INDEX = 0
     }
 }

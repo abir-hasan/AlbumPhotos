@@ -3,6 +3,7 @@ package com.example.albumphotos.ui.theme
 import androidx.compose.ui.unit.dp
 
 object Spacing {
+
     val x0 = 0.dp
     val x0_125 = 1.dp
     val x0_25 = 2.dp

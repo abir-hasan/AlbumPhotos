@@ -11,6 +11,7 @@ import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class)
 internal class AlbumMapperTest {
+
     @InjectMockKs
     private lateinit var albumMapper: AlbumMapper
 

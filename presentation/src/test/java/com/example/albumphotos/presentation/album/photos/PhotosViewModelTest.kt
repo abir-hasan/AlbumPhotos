@@ -27,6 +27,7 @@ import kotlin.test.assertEquals
 
 @ExtendWith(MockKExtension::class, CoroutinesExtension::class)
 class PhotosViewModelTest {
+
     @MockK
     private lateinit var photosArg: PhotosArg
 

@@ -16,6 +16,7 @@ open class CoroutinesExtension :
     TestExtension(),
     BeforeTestExecutionCallback,
     AfterTestExecutionCallback {
+
     private val testDispatcher = UnconfinedTestDispatcher()
 
     override fun beforeTestExecution(context: ExtensionContext) {

@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.collectLatest
 class MutableEventFlow<T : Any> private constructor(
     private val backingFlow: MutableStateFlow<Event<T>?>,
 ) : MutableStateFlow<Event<T>?> by backingFlow {
+
     constructor() : this(MutableStateFlow(null))
 
     fun setEvent(data: T) {
@@ -24,6 +25,7 @@ class MutableEventFlow<T : Any> private constructor(
 class EventFlow<out T : Any> constructor(
     private val mutable: MutableEventFlow<T>,
 ) : StateFlow<Event<T>?> by mutable {
+
     suspend fun retrieveEach(collector: suspend (T?) -> Unit) {
         mutable.collectLatest { collector(it?.retrieve()) }
     }
@@ -33,6 +35,7 @@ class EventFlow<out T : Any> constructor(
 data class Event<out T : Any>(
     private val data: T,
 ) {
+
     private val _isRetrieved = atomic(false)
     val isRetrieved: Boolean
         get() = _isRetrieved.value

@@ -7,6 +7,7 @@ import com.example.albumphotos.presentation.generic.UIState
 import kotlinx.collections.immutable.toImmutableList
 
 class AlbumsPreviewParameterProvider : PreviewParameterProvider<UIState<AlbumsUIModel>> {
+
     override val values: Sequence<UIState<AlbumsUIModel>>
         get() =
             sequenceOf(

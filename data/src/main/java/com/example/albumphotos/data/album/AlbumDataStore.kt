@@ -5,6 +5,7 @@ import com.example.albumphotos.domain.album.model.Album
 import com.example.albumphotos.domain.album.model.AlbumPhoto
 
 interface AlbumDataStore {
+
     fun setAlbums(albums: List<Album>)
 
     fun getAlbums(): CachedValue<List<Album>>?

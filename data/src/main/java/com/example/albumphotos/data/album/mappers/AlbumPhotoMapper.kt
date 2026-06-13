@@ -6,6 +6,7 @@ import org.koin.core.annotation.Factory
 
 @Factory
 class AlbumPhotoMapper {
+
     fun toAlbumPhotos(response: AlbumPhotosResponse): List<AlbumPhoto> =
         response.map {
             AlbumPhoto(

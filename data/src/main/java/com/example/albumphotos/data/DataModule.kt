@@ -15,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @ComponentScan
 class DataModule {
+
     @Factory
     fun provideLogger(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply {

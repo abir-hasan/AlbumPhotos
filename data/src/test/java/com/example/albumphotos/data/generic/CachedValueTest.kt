@@ -14,6 +14,7 @@ import kotlin.time.Clock
 import kotlin.time.Instant
 
 internal class CachedValueTest {
+
     @BeforeEach
     fun setup() {
         mockkObject(Clock.System)

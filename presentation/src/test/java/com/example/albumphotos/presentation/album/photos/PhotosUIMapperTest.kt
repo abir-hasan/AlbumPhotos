@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(MockKExtension::class)
 class PhotosUIMapperTest {
+
     @InjectMockKs
     private lateinit var photosUIMapper: PhotosUIMapper
 
