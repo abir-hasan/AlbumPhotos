@@ -99,6 +99,10 @@ style:
     maxLineLength: 120
   UnusedImports:
     active: true
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated:
+      - "Preview"
   WildcardImport:
     active: true
     excludeImports:
