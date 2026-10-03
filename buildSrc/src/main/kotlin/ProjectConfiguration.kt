@@ -8,5 +8,5 @@ object ProjectConfiguration {
 
     const val MinSdk = 26
     const val TargetSdk = 36
-    const val CompileSdk = 36
+    const val CompileSdk = 37
 }
