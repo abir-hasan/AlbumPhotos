@@ -1,12 +1,8 @@
 package com.example.albumphotos
 
 import android.app.Application
-import com.example.albumphotos.data.DataModule
-import com.example.albumphotos.domain.DomainModule
-import com.example.albumphotos.presentation.PresentationModule
 import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
-import org.koin.ksp.generated.module
+import org.koin.plugin.module.dsl.startKoin
 
 class AlbumPhotosApplication : Application() {
 
@@ -16,14 +12,8 @@ class AlbumPhotosApplication : Application() {
     }
 
     private fun setupKoin() {
-        startKoin {
+        startKoin<AlbumPhotosKoinApp> {
             androidContext(this@AlbumPhotosApplication)
-            modules(
-                AppModule().module,
-                DataModule().module,
-                DomainModule().module,
-                PresentationModule().module,
-            )
         }
     }
 }

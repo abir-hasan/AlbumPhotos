@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.koin.compiler)
     alias(libs.plugins.kotlinx.serialization.plugin)
 }
 
@@ -61,7 +61,6 @@ dependencies {
     implementation(libs.koin.navigation)
     implementation(libs.koin.compose)
     implementation(libs.koin.annotations)
-    ksp(libs.koin.ksp.compiler)
 
     implementation(libs.coroutines.core)
 
