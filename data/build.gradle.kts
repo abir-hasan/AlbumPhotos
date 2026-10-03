@@ -37,10 +37,6 @@ android {
 dependencies {
     implementation(project(":domain"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-
     // Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
@@ -49,9 +45,6 @@ dependencies {
     // Retrofit
     api(libs.bundles.retrofit)
     api(libs.logging.interceptor)
-
-    implementation(libs.coroutines.core)
-    implementation(libs.kotlin.datetime)
 
     // Test
     testImplementation(project(":core:test"))

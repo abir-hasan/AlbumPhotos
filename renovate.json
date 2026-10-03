@@ -7,11 +7,13 @@
   ],
   "baseBranches": ["main"],
   "labels": ["dependencies"],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
   "packageRules": [
     {
-      "description": "Group all Gradle/Kotlin dependency updates into a single PR.",
-      "matchManagers": ["gradle", "gradle-wrapper"],
-      "groupName": "gradle dependencies"
+      "description": "compose-rules 0.5.0+ requires detekt 2.x. Remove this rule after migrating to detekt 2.",
+      "matchPackageNames": ["io.nlopez.compose.rules:detekt"],
+      "allowedVersions": "<0.5.0"
     }
   ]
 }
