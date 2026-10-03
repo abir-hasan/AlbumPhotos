@@ -54,5 +54,6 @@ Config lives in `config/detekt/detekt.yml` (detekt) and `.editorconfig` (ktlint)
 
 ## Dependency updates
 
-**Renovate** keeps dependencies up to date, running every 4 weeks via a GitHub Action and opening
-PRs against `main`. Config is in `renovate.json`.
+**Renovate** keeps dependencies up to date, running weekly via a GitHub Action and opening
+PRs against `main`: one PR per library, with libraries released together (e.g. Kotlin, Compose,
+Koin) grouped. Config is in `renovate.json`.

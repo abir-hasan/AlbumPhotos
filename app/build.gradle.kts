@@ -42,8 +42,6 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":presentation"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.navigation)
     implementation(platform(libs.androidx.compose.bom))
@@ -54,6 +52,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.compose.shimmer)
     implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     // Koin
     implementation(platform(libs.koin.bom))
