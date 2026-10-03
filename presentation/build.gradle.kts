@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.koin.compiler)
 }
 
 android {
@@ -39,7 +39,6 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
     implementation(libs.koin.annotations)
-    ksp(libs.koin.ksp.compiler)
 
     implementation(libs.coroutines.core)
     implementation(libs.kotlinx.collections.immutable)
