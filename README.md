@@ -57,3 +57,23 @@ Config lives in `config/detekt/detekt.yml` (detekt) and `.editorconfig` (ktlint)
 **Renovate** keeps dependencies up to date, running weekly via a GitHub Action and opening
 PRs against `main`: one PR per library, with libraries released together (e.g. Kotlin, Compose,
 Koin) grouped. Config is in `renovate.json`.
+
+### Fixing Renovate PRs
+
+The `renovate-pr-fixer` Claude Code agent goes through every open Renovate PR one at a time. For
+each PR it merges `main`, runs `./gradlew clean assembleDebug test detekt ktlintCheck`, makes up to
+3 fix attempts, pushes working fixes and comments on the PR. PRs it can't fix get the
+`needs-manual-fix` label. A dated report (`reports/renovate/renovate-fixes-YYYY-MM-DD.md`) is
+written only when PRs were changed or failed.
+
+Trigger it with either:
+
+- `@agent-renovate-pr-fixer fix the open Renovate PRs` in any Claude Code session
+- `claude --agent renovate-pr-fixer` from the terminal
+
+Add "dry run" to do everything locally without pushing, commenting or labelling, or name PRs
+("only #12 #14") to limit it.
+
+The agent (`.claude/agents/renovate-pr-fixer.md`) is the "who". It preloads three skills from
+`.claude/skills/` as the "how": `renovate-pr-workflow`, `android-dependency-fixes` and
+`renovate-fix-report`.

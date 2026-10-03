@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew *)",
+      "Bash(gh auth status)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr comment *)",
+      "Bash(gh pr edit *)",
+      "Bash(gh label create *)",
+      "Bash(gh api *)",
+      "Bash(git status *)",
+      "Bash(git fetch *)",
+      "Bash(git branch *)",
+      "Bash(git rev-parse *)",
+      "Bash(git rev-list *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(git checkout *)",
+      "Bash(git merge *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push origin renovate/*)",
+      "Bash(git reset --hard origin/renovate/*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:repo1.maven.org)",
+      "WebFetch(domain:developer.android.com)",
+      "WebFetch(domain:docs.renovatebot.com)"
+    ],
+    "deny": [
+      "Bash(git push *--force*)",
+      "Bash(git push * -f*)",
+      "Bash(git push *--delete*)"
+    ]
+  }
+}
