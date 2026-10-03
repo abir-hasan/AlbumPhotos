@@ -20,7 +20,7 @@ it, keeping business logic isolated from frameworks.
 ## Libraries
 
 - **Jetpack Compose** + **Material 3** — UI
-- **Koin** — dependency injection (with annotations + KSP)
+- **Koin** — dependency injection (with annotations + Koin Compiler Plugin)
 - **Retrofit** + **OkHttp** — networking
 - **Coil** — image loading
 - **kotlinx** — coroutines, serialization, datetime, immutable collections

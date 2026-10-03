@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.koin.compiler)
 }
 
 kotlin {
@@ -11,16 +11,11 @@ kotlin {
     )
 }
 
-kotlin.sourceSets["main"].kotlin {
-    srcDir("build/generated/ksp/main/kotlin")
-}
-
 dependencies {
     // Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.annotations)
-    ksp(libs.koin.ksp.compiler)
 
     implementation(libs.coroutines.core)
 
