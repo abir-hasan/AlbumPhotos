@@ -1,5 +1,5 @@
 [versions]
-agp = "9.4.1"
+agp = "9.5.1"
 activity-compose = "1.13.0"
 atomicfu = "0.33.0"
 coroutines-core = "1.11.0"
